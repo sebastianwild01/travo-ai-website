@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CT943A3S3C.ai.travo.travo-ai",
+        "paths": ["/join/*", "/u/*"]
+      }
+    ]
+  }
+}
