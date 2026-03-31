@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travo.ai — Dein KI-Reiseplaner</title>
+    <meta name="description" content="travo.ai — Dein persoenlicher KI-Reiseplaner. Plane Reisen mit kuenstlicher Intelligenz.">
+    <meta property="og:title" content="travo.ai">
+    <meta property="og:description" content="Dein persoenlicher KI-Reiseplaner">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://travo-ai.app">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo { font-size: 48px; margin-bottom: 8px; }
+        h1 { font-size: 28px; margin-bottom: 8px; }
+        .subtitle { font-size: 16px; opacity: 0.7; margin-bottom: 32px; }
+        .code-box {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(0,200,255,0.3);
+            border-radius: 16px;
+            padding: 20px 32px;
+            margin-bottom: 24px;
+            display: none;
+        }
+        .code-label { font-size: 14px; opacity: 0.6; margin-bottom: 4px; }
+        .code-value { font-size: 32px; font-weight: bold; color: #00d4ff; letter-spacing: 4px; }
+        .cta {
+            display: inline-block;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            transition: transform 0.2s;
+        }
+        .cta:hover { transform: scale(1.03); }
+        .info { font-size: 13px; opacity: 0.4; margin-top: 12px; }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var path = window.location.pathname;
+            var codeBox = document.querySelector('.code-box');
+            var codeValue = document.querySelector('.code-value');
+            var subtitle = document.querySelector('.subtitle');
+
+            if (path.indexOf('/join/') === 0) {
+                var code = path.replace('/join/', '');
+                if (code) {
+                    codeBox.style.display = 'block';
+                    codeValue.textContent = code;
+                    subtitle.textContent = 'Jemand hat dich zu einer Reise eingeladen!';
+                }
+            } else if (path.indexOf('/u/') === 0) {
+                var username = path.replace('/u/', '').replace('id/', '');
+                if (username) {
+                    subtitle.textContent = 'Schau dir das Profil von @' + username + ' an!';
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="logo">&#9992;&#65039;</div>
+    <h1>travo.ai</h1>
+    <p class="subtitle">Dein persoenlicher KI-Reiseplaner</p>
+    <div class="code-box">
+        <div class="code-label">Dein Einladungscode:</div>
+        <div class="code-value"></div>
+    </div>
+    <a class="cta" href="https://apps.apple.com/app/travo-ai">
+        Im App Store oeffnen
+    </a>
+    <p class="info">Lade travo.ai herunter und gib den Code in der App ein.</p>
+</body>
+</html>
