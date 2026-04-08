@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support — travo.ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 640px; margin: 0 auto; }
+        .back { color: #00d4ff; text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 24px; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: 28px; margin-bottom: 8px; }
+        .subtitle { font-size: 15px; opacity: 0.7; margin-bottom: 32px; }
+        h2 { font-size: 18px; margin-top: 28px; margin-bottom: 12px; }
+        p { font-size: 14px; line-height: 1.7; opacity: 0.85; margin-bottom: 12px; }
+        .contact-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 6px;
+            margin-top: 16px;
+        }
+        label:first-child { margin-top: 0; }
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #00d4ff;
+        }
+        textarea { resize: vertical; min-height: 120px; }
+        select option { background: #1a1a2e; color: white; }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .submit-btn:hover { transform: scale(1.02); }
+        .submit-btn:active { opacity: 0.8; }
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+        .success-msg.show { display: block; }
+        .direct-mail {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+        .direct-mail a { color: #00d4ff; }
+        .faq { margin-top: 32px; }
+        .faq-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        .faq-q { font-size: 15px; font-weight: 600; }
+        .faq-a { font-size: 14px; opacity: 0.7; margin-top: 8px; display: none; line-height: 1.6; }
+        .faq-item.open .faq-a { display: block; }
+        .footer-links {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+        .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">&larr; Zurueck zu travo.ai</a>
+        <h1>Support</h1>
+        <p class="subtitle">Wie koennen wir dir helfen?</p>
+
+        <div class="faq">
+            <h2>Haeufige Fragen</h2>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-q">Wie kann ich mein Abo kuendigen?</div>
+                <div class="faq-a">Oeffne die iOS-Einstellungen &rarr; Dein Name &rarr; Abonnements &rarr; travo.ai &rarr; Abo kuendigen. Die Kuendigung wird zum Ende des aktuellen Abrechnungszeitraums wirksam.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-q">Wie loesche ich meinen Account?</div>
+                <div class="faq-a">Gehe in der App zu Einstellungen &rarr; Account loeschen. Alle deine Daten werden innerhalb von 30 Tagen unwiderruflich geloescht.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-q">Die KI-Reiseplanung funktioniert nicht</div>
+                <div class="faq-a">Stelle sicher, dass du eine stabile Internetverbindung hast. Falls das Problem weiterhin besteht, kontaktiere uns ueber das Formular unten.</div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('open')">
+                <div class="faq-q">Kann ich eine Erstattung bekommen?</div>
+                <div class="faq-a">Erstattungen werden ueber Apple abgewickelt. Gehe zu reportaproblem.apple.com und waehle den entsprechenden Kauf aus. Bei Fragen hilft dir unser Support gerne weiter.</div>
+            </div>
+        </div>
+
+        <h2>Kontaktformular</h2>
+        <div class="contact-card">
+            <form id="supportForm" action="https://formsubmit.co/sebastian.travo@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="travo.ai Support-Anfrage">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://travo-ai.app/support#success">
+                <input type="hidden" name="_template" value="table">
+
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Dein Name" required>
+
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" placeholder="Deine E-Mail-Adresse" required>
+
+                <label for="topic">Thema</label>
+                <select id="topic" name="topic" required>
+                    <option value="">Bitte waehlen...</option>
+                    <option value="bug">Fehler melden</option>
+                    <option value="subscription">Abo &amp; Zahlung</option>
+                    <option value="account">Account &amp; Profil</option>
+                    <option value="feature">Feature-Wunsch</option>
+                    <option value="privacy">Datenschutz</option>
+                    <option value="other">Sonstiges</option>
+                </select>
+
+                <label for="message">Nachricht</label>
+                <textarea id="message" name="message" placeholder="Beschreibe dein Anliegen..." required></textarea>
+
+                <button type="submit" class="submit-btn">Nachricht senden</button>
+            </form>
+            <div class="success-msg" id="successMsg">
+                &#10003; Danke! Deine Nachricht wurde gesendet. Wir melden uns so schnell wie moeglich.
+            </div>
+        </div>
+
+        <p class="direct-mail">
+            Oder schreib uns direkt: <a href="/cdn-cgi/l/email-protection#fb889e999a888f929a95d58f899a8d94bb9c969a9297d5989496"><span class="__cf_email__" data-cfemail="f68593949785829f9798d88284978099b6919b979f9ad895999b">[email&#160;protected]</span></a>
+        </p>
+
+        <div class="footer-links">
+            <a href="/">Startseite</a>
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></

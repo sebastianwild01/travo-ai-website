@@ -4,317 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>travo.ai — Dein KI-Reiseplaner</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="travo.ai — Dein persoenlicher KI-Reiseplaner. Plane Reisen mit kuenstlicher Intelligenz.">
+    <meta property="og:title" content="travo.ai">
+    <meta property="og:description" content="Dein persoenlicher KI-Reiseplaner">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://travo-ai.app">
     <style>
-        :root {
-            --bg: #0a0e1a;
-            --bg-card: rgba(255,255,255,0.04);
-            --text: #e8eaf0;
-            --text-muted: rgba(255,255,255,0.45);
-            --cyan: #00ccff;
-            --cyan-dim: rgba(0,204,255,0.12);
-            --border: rgba(255,255,255,0.06);
-            --radius: 16px;
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'DM Sans', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
             min-height: 100vh;
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 24px 48px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(0,204,255,0.08) 0%, transparent 60%);
-        }
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--cyan);
-            letter-spacing: -1px;
-        }
-        .tagline {
-            margin-top: 12px;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-        nav {
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 32px;
-            flex-wrap: wrap;
-            padding: 0 16px;
-        }
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            border: 1px solid var(--border);
-        }
-        nav a:hover, nav a.active {
-            color: var(--cyan);
-            border-color: var(--cyan);
-            background: var(--cyan-dim);
-        }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
-        }
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        .updated {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-        h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--cyan);
-            margin-top: 40px;
-            margin-bottom: 12px;
-        }
-        p, li {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-        }
-        ul {
-            padding-left: 20px;
-            margin-bottom: 16px;
-        }
-        li { margin-bottom: 6px; }
-        a { color: var(--cyan); }
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-top: 24px;
-        }
-        .contact-card {
+            padding: 20px;
             text-align: center;
-            padding: 40px 24px;
         }
-        .contact-card p { color: var(--text); font-size: 1rem; }
-        .email-link {
+        .logo { font-size: 48px; margin-bottom: 8px; }
+        h1 { font-size: 28px; margin-bottom: 8px; }
+        .subtitle { font-size: 16px; opacity: 0.7; margin-bottom: 32px; }
+        .cta {
             display: inline-block;
-            margin-top: 16px;
-            padding: 12px 32px;
-            background: var(--cyan-dim);
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-            border-radius: 100px;
+            background: linear-gradient(90deg, #00d4ff, #0066ff);
+            color: white;
             text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 14px;
+            font-size: 18px;
             font-weight: 600;
-            transition: all 0.2s;
+            margin-bottom: 16px;
+            transition: transform 0.2s;
         }
-        .email-link:hover {
-            background: var(--cyan);
-            color: var(--bg);
-        }
-        .lang-toggle {
+        .cta:hover { transform: scale(1.03); }
+        .info { font-size: 13px; opacity: 0.4; margin-top: 12px; }
+        .footer {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 6px 16px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            z-index: 100;
+            bottom: 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
         }
-        .lang-toggle:hover { border-color: var(--cyan); color: var(--cyan); }
-        footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border);
+        .footer a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            transition: color 0.2s;
         }
-        .section { display: none; }
-        .section.active { display: block; }
-        @media (max-width: 480px) {
-            .hero { padding: 60px 16px 32px; }
-            .logo { font-size: 1.8rem; }
-            h1 { font-size: 1.4rem; }
-        }
+        .footer a:hover { color: rgba(255,255,255,0.7); }
     </style>
 </head>
 <body>
-
-<button class="lang-toggle" onclick="toggleLang()">EN / DE</button>
-
-<div class="hero">
-    <div class="logo">travo.ai ✈️</div>
-    <p class="tagline" data-de="Dein KI-Reiseplaner" data-en="Your AI Travel Planner"></p>
-    <nav>
-        <a href="#" class="active" onclick="showSection('privacy', this)" data-de="Datenschutz" data-en="Privacy"></a>
-        <a href="#" onclick="showSection('terms', this)" data-de="Nutzungsbedingungen" data-en="Terms"></a>
-        <a href="#" onclick="showSection('support', this)" data-de="Support" data-en="Support"></a>
-    </nav>
-</div>
-
-<div class="container">
-
-    <!-- DATENSCHUTZ -->
-    <div id="privacy" class="section active">
-        <h1 data-de="Datenschutzerklärung" data-en="Privacy Policy"></h1>
-        <p class="updated" data-de="Zuletzt aktualisiert: 24. März 2026" data-en="Last updated: March 24, 2026"></p>
-
-        <h2 data-de="1. Verantwortlicher" data-en="1. Data Controller"></h2>
-        <p data-de="Sebastian Wild<br>E-Mail: support@travo-ai.app" data-en="Sebastian Wild<br>Email: support@travo-ai.app"></p>
-
-        <h2 data-de="2. Welche Daten wir erheben" data-en="2. Data We Collect"></h2>
-        <p data-de="travo.ai erhebt folgende Daten:" data-en="travo.ai collects the following data:"></p>
-        <ul>
-            <li data-de="<strong>Account-Daten:</strong> Wenn du dich mit „Mit Apple anmelden" registrierst, speichern wir deine Apple-User-ID und deinen Anzeigenamen. Deine E-Mail-Adresse wird nur gespeichert, wenn du sie freigibst." data-en="<strong>Account Data:</strong> When you sign in with Apple, we store your Apple User ID and display name. Your email is only stored if you choose to share it."></li>
-            <li data-de="<strong>Reisepläne:</strong> Die von dir erstellten Reisepläne werden in Google Firebase Firestore (EU-Server) gespeichert, damit du sie geräteübergreifend nutzen und mit Freunden teilen kannst." data-en="<strong>Trip Plans:</strong> Your trip plans are stored in Google Firebase Firestore (EU servers) so you can access them across devices and share them with friends."></li>
-            <li data-de="<strong>Standortdaten:</strong> Mit deiner Erlaubnis nutzen wir deinen ungefähren Standort, um nahegelegene Flughäfen zu ermitteln. Standortdaten werden nicht gespeichert oder an Dritte übermittelt." data-en="<strong>Location Data:</strong> With your permission, we use your approximate location to find nearby airports. Location data is not stored or shared with third parties."></li>
-            <li data-de="<strong>Nutzungsdaten:</strong> Firebase Analytics erhebt anonymisierte Nutzungsstatistiken (keine personenbezogenen Daten)." data-en="<strong>Usage Data:</strong> Firebase Analytics collects anonymized usage statistics (no personal data)."></li>
-        </ul>
-
-        <h2 data-de="3. Drittanbieter-Dienste" data-en="3. Third-Party Services"></h2>
-        <p data-de="travo.ai nutzt folgende Drittanbieter:" data-en="travo.ai uses the following third-party services:"></p>
-        <ul>
-            <li data-de="<strong>Anthropic (Claude API):</strong> Deine Reisepräferenzen werden an die Claude API gesendet, um personalisierte Reisepläne zu erstellen. Anthropic speichert keine personenbezogenen Daten. <a href='https://www.anthropic.com/privacy' target='_blank'>Datenschutz von Anthropic</a>" data-en="<strong>Anthropic (Claude API):</strong> Your travel preferences are sent to the Claude API to generate personalized trip plans. Anthropic does not store personal data. <a href='https://www.anthropic.com/privacy' target='_blank'>Anthropic Privacy Policy</a>"></li>
-            <li data-de="<strong>Google Firebase:</strong> Authentifizierung, Datenbank und Analytics. Server in der EU. <a href='https://firebase.google.com/support/privacy' target='_blank'>Firebase Datenschutz</a>" data-en="<strong>Google Firebase:</strong> Authentication, database, and analytics. Servers in the EU. <a href='https://firebase.google.com/support/privacy' target='_blank'>Firebase Privacy</a>"></li>
-            <li data-de="<strong>Unsplash:</strong> Reisefotos werden von Unsplash geladen. <a href='https://unsplash.com/privacy' target='_blank'>Unsplash Datenschutz</a>" data-en="<strong>Unsplash:</strong> Travel photos are loaded from Unsplash. <a href='https://unsplash.com/privacy' target='_blank'>Unsplash Privacy</a>"></li>
-            <li data-de="<strong>Google Places:</strong> Aktivitäts- und Hotelfotos. <a href='https://policies.google.com/privacy' target='_blank'>Google Datenschutz</a>" data-en="<strong>Google Places:</strong> Activity and hotel photos. <a href='https://policies.google.com/privacy' target='_blank'>Google Privacy</a>"></li>
-            <li data-de="<strong>Skyscanner:</strong> Affiliate-Links zu Flügen und Hotels. Beim Klick wirst du zu Skyscanner weitergeleitet. <a href='https://www.skyscanner.de/datenschutzbestimmungen' target='_blank'>Skyscanner Datenschutz</a>" data-en="<strong>Skyscanner:</strong> Affiliate links for flights and hotels. Clicking redirects you to Skyscanner. <a href='https://www.skyscanner.net/privacypolicy' target='_blank'>Skyscanner Privacy</a>"></li>
-            <li data-de="<strong>RevenueCat:</strong> Verarbeitung von In-App-Käufen und Abonnements. <a href='https://www.revenuecat.com/privacy/' target='_blank'>RevenueCat Datenschutz</a>" data-en="<strong>RevenueCat:</strong> Processing in-app purchases and subscriptions. <a href='https://www.revenuecat.com/privacy/' target='_blank'>RevenueCat Privacy</a>"></li>
-        </ul>
-
-        <h2 data-de="4. Datenspeicherung" data-en="4. Data Storage"></h2>
-        <p data-de="Deine Daten werden auf Google Firebase Servern in der EU (europe-west) gespeichert. Bilder werden lokal auf deinem Gerät gecacht." data-en="Your data is stored on Google Firebase servers in the EU (europe-west). Images are cached locally on your device."></p>
-
-        <h2 data-de="5. Deine Rechte (DSGVO)" data-en="5. Your Rights (GDPR)"></h2>
-        <p data-de="Du hast das Recht auf:" data-en="You have the right to:"></p>
-        <ul>
-            <li data-de="Auskunft über deine gespeicherten Daten" data-en="Access your stored data"></li>
-            <li data-de="Berichtigung unrichtiger Daten" data-en="Rectification of inaccurate data"></li>
-            <li data-de="Löschung deiner Daten" data-en="Deletion of your data"></li>
-            <li data-de="Datenübertragbarkeit" data-en="Data portability"></li>
-            <li data-de="Widerruf deiner Einwilligung" data-en="Withdrawal of consent"></li>
-        </ul>
-        <p data-de="Kontaktiere uns unter <a href='mailto:support@travo-ai.app'>support@travo-ai.app</a> für alle Anfragen." data-en="Contact us at <a href='mailto:support@travo-ai.app'>support@travo-ai.app</a> for any requests."></p>
-
-        <h2 data-de="6. Datenlöschung" data-en="6. Data Deletion"></h2>
-        <p data-de="Du kannst dein Konto und alle zugehörigen Daten jederzeit löschen: Öffne die App → Profil → Konto löschen. Alternativ sende eine E-Mail an support@travo-ai.app." data-en="You can delete your account and all associated data at any time: Open the app → Profile → Delete Account. Alternatively, email support@travo-ai.app."></p>
-
-        <h2 data-de="7. Kinder" data-en="7. Children"></h2>
-        <p data-de="travo.ai richtet sich nicht an Kinder unter 16 Jahren. Wir erheben wissentlich keine Daten von Kindern." data-en="travo.ai is not directed at children under 16. We do not knowingly collect data from children."></p>
-
-        <h2 data-de="8. Änderungen" data-en="8. Changes"></h2>
-        <p data-de="Wir können diese Datenschutzerklärung aktualisieren. Wesentliche Änderungen werden in der App mitgeteilt." data-en="We may update this privacy policy. Material changes will be communicated in the app."></p>
+    <div class="logo">&#9992;&#65039;</div>
+    <h1>travo.ai</h1>
+    <p class="subtitle">Dein persoenlicher KI-Reiseplaner</p>
+    <a class="cta" href="https://apps.apple.com/app/travo-ai">
+        Im App Store oeffnen
+    </a>
+    <p class="info">Plane deine naechste Reise mit kuenstlicher Intelligenz.</p>
+    <div class="footer">
+        <a href="/impressum">Impressum</a>
+        <a href="/datenschutz">Datenschutz</a>
+        <a href="/support">Support</a>
     </div>
-
-    <!-- NUTZUNGSBEDINGUNGEN -->
-    <div id="terms" class="section">
-        <h1 data-de="Nutzungsbedingungen" data-en="Terms of Use"></h1>
-        <p class="updated" data-de="Zuletzt aktualisiert: 24. März 2026" data-en="Last updated: March 24, 2026"></p>
-
-        <h2 data-de="1. Nutzung der App" data-en="1. Use of the App"></h2>
-        <p data-de="travo.ai ist ein KI-gestützter Reiseplaner. Die generierten Reisepläne sind Vorschläge und keine garantierten Angebote. Preise, Verfügbarkeit und Reiseinformationen können sich jederzeit ändern." data-en="travo.ai is an AI-powered travel planner. Generated trip plans are suggestions, not guaranteed offers. Prices, availability, and travel information may change at any time."></p>
-
-        <h2 data-de="2. Flugpreise und Hotels" data-en="2. Flight Prices and Hotels"></h2>
-        <p data-de="Die angezeigten Flugpreise sind KI-generierte Schätzungen und keine Echtzeitpreise. Für aktuelle Preise wirst du zu Skyscanner weitergeleitet. travo.ai übernimmt keine Verantwortung für Preisunterschiede." data-en="Displayed flight prices are AI-generated estimates, not real-time prices. For current prices, you are redirected to Skyscanner. travo.ai assumes no responsibility for price differences."></p>
-
-        <h2 data-de="3. Abonnement" data-en="3. Subscription"></h2>
-        <p data-de="travo.ai Premium ist ein monatliches Abonnement (€6,99/Monat). Das Abonnement verlängert sich automatisch, sofern es nicht mindestens 24 Stunden vor Ende der aktuellen Laufzeit gekündigt wird. Die Kündigung erfolgt über die iOS-Einstellungen → Apple-ID → Abonnements." data-en="travo.ai Premium is a monthly subscription (€6.99/month). The subscription renews automatically unless cancelled at least 24 hours before the end of the current period. Cancel via iOS Settings → Apple ID → Subscriptions."></p>
-
-        <h2 data-de="4. Kostenlose Nutzung" data-en="4. Free Usage"></h2>
-        <p data-de="Ohne Premium-Abonnement kannst du 1 Reise pro Monat planen und 1 Chat-Nachricht pro Reise senden." data-en="Without a Premium subscription, you can plan 1 trip per month and send 1 chat message per trip."></p>
-
-        <h2 data-de="5. Haftungsausschluss" data-en="5. Disclaimer"></h2>
-        <p data-de="travo.ai stellt Reisevorschläge bereit. Wir übernehmen keine Haftung für Reiseentscheidungen, die auf Basis unserer Vorschläge getroffen werden. Prüfe alle Informationen vor der Buchung." data-en="travo.ai provides travel suggestions. We assume no liability for travel decisions made based on our suggestions. Verify all information before booking."></p>
-
-        <h2 data-de="6. Geistiges Eigentum" data-en="6. Intellectual Property"></h2>
-        <p data-de="travo.ai, einschließlich Design, Code und Inhalte, ist geistiges Eigentum von Sebastian Wild. Fotos unterliegen den Lizenzen von Unsplash und Google." data-en="travo.ai, including design, code, and content, is the intellectual property of Sebastian Wild. Photos are subject to Unsplash and Google licenses."></p>
-    </div>
-
-    <!-- SUPPORT -->
-    <div id="support" class="section">
-        <h1 data-de="Support" data-en="Support"></h1>
-        <p class="updated" data-de="Wir helfen dir gerne!" data-en="We're happy to help!"></p>
-
-        <div class="card contact-card">
-            <p data-de="Hast du Fragen, Feedback oder ein Problem?" data-en="Have questions, feedback, or an issue?"></p>
-            <a href="mailto:support@travo-ai.app" class="email-link">support@travo-ai.app</a>
-        </div>
-
-        <h2 data-de="Häufige Fragen" data-en="FAQ"></h2>
-
-        <div class="card">
-            <h2 style="margin-top:0" data-de="Wie kündige ich mein Abo?" data-en="How do I cancel my subscription?"></h2>
-            <p data-de="Öffne die iOS-Einstellungen → Tippe auf deinen Namen → Abonnements → travo.ai Premium → Abo kündigen." data-en="Open iOS Settings → Tap your name → Subscriptions → travo.ai Premium → Cancel Subscription."></p>
-        </div>
-
-        <div class="card">
-            <h2 style="margin-top:0" data-de="Wie lösche ich mein Konto?" data-en="How do I delete my account?"></h2>
-            <p data-de="Öffne die App → Profil → Konto löschen. Alle deine Daten werden unwiderruflich gelöscht." data-en="Open the app → Profile → Delete Account. All your data will be permanently deleted."></p>
-        </div>
-
-        <div class="card">
-            <h2 style="margin-top:0" data-de="Sind die Flugpreise echt?" data-en="Are the flight prices real?"></h2>
-            <p data-de="Die Preise sind KI-generierte Schätzungen basierend auf historischen Daten. Für aktuelle Preise tippe auf den Flug — du wirst zu Skyscanner weitergeleitet." data-en="Prices are AI-generated estimates based on historical data. For current prices, tap on a flight — you'll be redirected to Skyscanner."></p>
-        </div>
-
-        <div class="card">
-            <h2 style="margin-top:0" data-de="Funktioniert die App offline?" data-en="Does the app work offline?"></h2>
-            <p data-de="Gespeicherte Reisen mit gecachten Bildern sind offline verfügbar. Für neue Reiseplanungen brauchst du Internet." data-en="Saved trips with cached images are available offline. You need internet for new trip planning."></p>
-        </div>
-    </div>
-
-</div>
-
-<footer>
-    <p>© 2026 travo.ai — Sebastian Wild</p>
-</footer>
-
-<script>
-    let lang = 'de';
-
-    function applyLang() {
-        document.querySelectorAll('[data-de]').forEach(el => {
-            el.innerHTML = el.getAttribute('data-' + lang);
-        });
-    }
-
-    function toggleLang() {
-        lang = lang === 'de' ? 'en' : 'de';
-        applyLang();
-    }
-
-    function showSection(id, link) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-        if (link) link.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    applyLang();
-</script>
-
 </body>
 </html>

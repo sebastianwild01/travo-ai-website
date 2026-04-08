@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklaerung — travo.ai</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 640px; margin: 0 auto; }
+        .back { color: #00d4ff; text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 24px; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: 28px; margin-bottom: 8px; }
+        .updated { font-size: 13px; opacity: 0.5; margin-bottom: 24px; }
+        h2 { font-size: 18px; margin-top: 28px; margin-bottom: 8px; }
+        h3 { font-size: 15px; margin-top: 16px; margin-bottom: 6px; }
+        p, li { font-size: 14px; line-height: 1.7; opacity: 0.85; margin-bottom: 8px; }
+        ul { padding-left: 20px; margin-bottom: 12px; }
+        a { color: #00d4ff; }
+        .footer-links {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+        }
+        .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">&larr; Zurueck zu travo.ai</a>
+        <h1>Datenschutzerklaerung</h1>
+        <p class="updated">Stand: April 2026</p>
+
+        <h2>1. Verantwortlicher</h2>
+        <p>
+            Sebastian Wild<br>
+            Roonstr. 11, 50674 Koeln, Deutschland<br>
+            E-Mail: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="552630373426213c343b7b212734233a153238343c397b363a38">[email&#160;protected]</a>
+        </p>
+
+        <h2>2. Ueberblick</h2>
+        <p>travo.ai ist eine iOS-App fuer KI-gestuetzte Reiseplanung und soziale Reisefunktionen. Der Schutz deiner persoenlichen Daten ist uns wichtig. Diese Datenschutzerklaerung informiert dich darueber, welche Daten wir erheben, wie wir sie verwenden und welche Rechte du hast.</p>
+
+        <h2>3. Welche Daten wir erheben</h2>
+
+        <h3>3.1 Accountdaten</h3>
+        <p>Bei der Registrierung ueber Apple Sign In erhalten wir:</p>
+        <ul>
+            <li>Deine Apple ID (eine eindeutige Kennung)</li>
+            <li>Deinen Namen (sofern du ihn freigibst)</li>
+            <li>Deine E-Mail-Adresse (oder eine von Apple generierte Relay-Adresse)</li>
+        </ul>
+        <p>Zusaetzlich erstellst du einen Benutzernamen und optional einen Anzeigenamen.</p>
+
+        <h3>3.2 Profildaten</h3>
+        <ul>
+            <li>Profilbilder und Carousel-Fotos</li>
+            <li>Bio, Interessen, Reisestil, Sprachen</li>
+            <li>Besuchte Laender und Staedte</li>
+            <li>Urlaubszeitraeume</li>
+            <li>Waehrungspraeferenz</li>
+        </ul>
+
+        <h3>3.3 Reisedaten</h3>
+        <ul>
+            <li>Reiseziele, Daten, Reisestil und Praeferenzen die du bei der KI-Planung eingibst</li>
+            <li>Generierte Reiseplaene</li>
+            <li>Hochgeladene Screenshots (bei der Reise-Optimierung)</li>
+        </ul>
+
+        <h3>3.4 Kommunikationsdaten</h3>
+        <ul>
+            <li>Nachrichten in Direkt- und Gruppenchats</li>
+            <li>Bilder die du in Chats teilst</li>
+        </ul>
+
+        <h3>3.5 Technische Daten</h3>
+        <ul>
+            <li>Geraetetyp und Betriebssystemversion</li>
+            <li>FCM-Token fuer Push-Benachrichtigungen</li>
+            <li>Absturzberichte und Nutzungsstatistiken (ueber Firebase Analytics)</li>
+        </ul>
+
+        <h2>4. Wie wir deine Daten verwenden</h2>
+        <ul>
+            <li><strong>KI-Reiseplanung:</strong> Deine Reisepraeferenzen werden an die Anthropic Claude API gesendet um personalisierte Reiseplaene zu erstellen. Anthropic speichert diese Daten nicht dauerhaft.</li>
+            <li><strong>Flugpreise:</strong> Wir nutzen die Travelpayouts/Aviasales API um aktuelle Flugpreise abzurufen. Dabei werden Abflug- und Zielort sowie Reisedaten uebermittelt.</li>
+            <li><strong>Hotelsuche:</strong> Ueber Skyscanner werden Hotelpreise abgerufen. Stadt und Reisedaten werden uebermittelt.</li>
+            <li><strong>Bilder:</strong> Unsplash wird fuer Reisebilder genutzt. Deine persoenlichen Daten werden nicht an Unsplash uebermittelt.</li>
+            <li><strong>Orte:</strong> Google Places wird fuer Ortsinformationen genutzt.</li>
+            <li><strong>Soziale Funktionen:</strong> Dein Profil, Nachrichten und Freundschaftsanfragen werden in Firebase Firestore gespeichert.</li>
+            <li><strong>Push-Benachrichtigungen:</strong> Wir senden dir Benachrichtigungen ueber neue Nachrichten, Trip-Einladungen und Freundschaftsanfragen ueber Firebase Cloud Messaging.</li>
+            <li><strong>Abonnements:</strong> RevenueCat verarbeitet deine Abonnement-Daten. Zahlungen werden direkt ueber Apple abgewickelt.</li>
+        </ul>
+
+        <h2>5. Drittanbieter</h2>
+        <p>Wir nutzen folgende Drittanbieter-Dienste:</p>
+        <ul>
+            <li><strong>Firebase</strong> (Google) — Authentifizierung, Datenbank, Speicher, Analytics, Cloud Messaging. <a href="https://firebase.google.com/support/privacy" target="_blank">Datenschutz</a></li>
+            <li><strong>Anthropic (Claude API)</strong> — KI-Reiseplanung. <a href="https://www.anthropic.com/privacy" target="_blank">Datenschutz</a></li>
+            <li><strong>RevenueCat</strong> — Abonnementverwaltung. <a href="https://www.revenuecat.com/privacy" target="_blank">Datenschutz</a></li>
+            <li><strong>Travelpayouts</strong> — Flugpreisdaten. <a href="https://www.travelpayouts.com/privacy" target="_blank">Datenschutz</a></li>
+            <li><strong>Skyscanner</strong> — Hotel- und Fluglinks. <a href="https://www.skyscanner.de/privacy-policy" target="_blank">Datenschutz</a></li>
+            <li><strong>Google Places</strong> — Ortsdaten. <a href="https://policies.google.com/privacy" target="_blank">Datenschutz</a></li>
+            <li><strong>Unsplash</strong> — Reisebilder. <a href="https://unsplash.com/privacy" target="_blank">Datenschutz</a></li>
+        </ul>
+
+        <h2>6. Datenspeicherung</h2>
+        <p>Deine Daten werden auf Servern von Google Firebase in der EU (Region europe-west3, Frankfurt) gespeichert. Wir bewahren deine Daten so lange auf, wie dein Account besteht. Bei Loeeschung deines Accounts werden alle zugehoerigen Daten innerhalb von 30 Tagen geloescht.</p>
+
+        <h2>7. Deine Rechte (DSGVO)</h2>
+        <p>Du hast das Recht auf:</p>
+        <ul>
+            <li><strong>Auskunft</strong> ueber deine gespeicherten Daten</li>
+            <li><strong>Berichtigung</strong> unrichtiger Daten</li>
+            <li><strong>Loeschung</strong> deiner Daten</li>
+            <li><strong>Einschraenkung</strong> der Verarbeitung</li>
+            <li><strong>Datenuebertragbarkeit</strong></li>
+            <li><strong>Widerspruch</strong> gegen die Verarbeitung</li>
+        </ul>
+        <p>Kontaktiere uns unter <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="384b5d5a594b4c515956164c4a594e57785f55595154165b5755">[email&#160;protected]</a> oder nutze das <a href="/support">Kontaktformular</a>.</p>
+
+        <h2>8. Push-Benachrichtigungen</h2>
+        <p>Du kannst Push-Benachrichtigungen jederzeit in den iOS-Systemeinstellungen oder in den App-Einstellungen deaktivieren. Wir unterscheiden zwischen verschiedenen Kategorien (Nachrichten, Reisen, Deals, Allgemein) die du einzeln steuern kannst.</p>
+
+        <h2>9. Kinder</h2>
+        <p>travo.ai richtet sich nicht an Kinder unter 16 Jahren. Wir erheben wissentlich keine Daten von Kindern unter 16 Jahren.</p>
+
+        <h2>10. Aenderungen</h2>
+        <p>Wir behalten uns vor, diese Datenschutzerklaerung anzupassen. Die aktuelle Version findest du immer auf dieser Seite.</p>
+
+        <h2>11. Kontakt</h2>
+        <p>Bei Fragen zum Datenschutz wende di
