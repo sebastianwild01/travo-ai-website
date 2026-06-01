@@ -273,6 +273,24 @@
             color: var(--text-faint);
             margin-bottom: 2px;
         }
+        .deal-origin {
+            font-size: 11px;
+            color: var(--text-faint);
+            letter-spacing: 0.02em;
+            margin-top: -2px;
+        }
+
+        /* Block sub-headings (visible only when both match + other blocks exist). */
+        .deals-block { margin-top: 8px; }
+        .deals-block + .deals-block { margin-top: 40px; }
+        .deals-block-heading {
+            font-size: clamp(18px, 4vw, 22px);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 18px;
+            color: var(--text);
+            text-align: left;
+        }
         .deal-title {
             font-size: 17px;
             font-weight: 700;
@@ -407,7 +425,15 @@
         <h2 class="deals-heading" id="deals-heading" data-i18n="dealsHeading">Aktuelle Deals</h2>
         <p class="deals-sub" data-i18n="dealsSub">Tagesaktuelle Reise-Schnaeppchen, gefunden von unserer KI.</p>
         <p class="deals-placeholder" data-i18n="dealsLoading">Lade Deals&hellip;</p>
-        <div class="deals-list" role="list"></div>
+
+        <div class="deals-block" data-block="match" hidden>
+            <h3 class="deals-block-heading" data-block-heading></h3>
+            <div class="deals-list" role="list" data-list="match"></div>
+        </div>
+        <div class="deals-block" data-block="other" hidden>
+            <h3 class="deals-block-heading" data-block-heading></h3>
+            <div class="deals-list" role="list" data-list="other"></div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -451,7 +477,103 @@
             dealsEmpty:    { de: "Aktuell keine Deals verfügbar.",                            en: "No deals available right now." },
             days:          { de: "Tage",                                                     en: "days" },
             viewFlights:   { de: "Flüge ansehen",                                            en: "View flights" },
-            photoCredit:   { de: "Foto",                                                     en: "Photo" }
+            photoCredit:   { de: "Foto",                                                     en: "Photo" },
+            originPrefix:  { de: "ab",                                                       en: "from" },
+            dealsAbFrom:   { de: "Deals ab",                                                 en: "Deals from" },
+            dealsMoreHead: { de: "Weitere Reisen",                                           en: "More trips" }
+        };
+
+        // --- Geo: visitor's country derived from the IANA browser timezone ---
+        // No external request, no geolocation prompt — just Intl. Returns null on
+        // unknown timezone, which is the harmless "no match" path (single block view).
+        const TZ_TO_COUNTRY = {
+            "Europe/Berlin": "DE", "Europe/Busingen": "DE",
+            "Europe/Vienna": "AT",
+            "Europe/Zurich": "CH",
+            "Europe/London": "UK", "Europe/Belfast": "UK",
+            "Europe/Paris": "FR",
+            "Europe/Rome": "IT",
+            "Europe/Madrid": "ES", "Atlantic/Canary": "ES", "Africa/Ceuta": "ES",
+            "Europe/Amsterdam": "NL",
+            "America/New_York": "US", "America/Detroit": "US", "America/Chicago": "US",
+            "America/Denver": "US", "America/Phoenix": "US", "America/Los_Angeles": "US",
+            "America/Anchorage": "US", "America/Adak": "US", "Pacific/Honolulu": "US",
+            "America/Indianapolis": "US", "America/Indiana/Indianapolis": "US",
+            "America/Boise": "US", "America/Juneau": "US"
+        };
+        const visitorTZ = (Intl.DateTimeFormat().resolvedOptions().timeZone) || "";
+        const visitorCountry = TZ_TO_COUNTRY[visitorTZ] || null;
+
+        // --- IATA → Country (origin of flights[0].from). Covers the codes present
+        // in the current dataset and the typical EU/US neighbours so newly added
+        // deals don't fall through. Unknown codes resolve to null → "other" bucket. ---
+        const IATA_TO_COUNTRY = {
+            // US
+            SFO:"US", LAX:"US", LGA:"US", JFK:"US", EWR:"US", BOS:"US", ORD:"US",
+            MIA:"US", SEA:"US", IAD:"US", ATL:"US", DFW:"US",
+            // DE
+            CGN:"DE", BER:"DE", DUS:"DE", FRA:"DE", MUC:"DE", HAM:"DE", STR:"DE", HAJ:"DE",
+            // AT
+            VIE:"AT", SZG:"AT", INN:"AT",
+            // CH
+            ZRH:"CH", GVA:"CH", BSL:"CH",
+            // UK
+            LHR:"UK", LGW:"UK", MAN:"UK", STN:"UK", LTN:"UK", EDI:"UK", BHX:"UK",
+            // FR
+            CDG:"FR", ORY:"FR", NCE:"FR", LYS:"FR", MRS:"FR",
+            // IT
+            FCO:"IT", MXP:"IT", LIN:"IT", NAP:"IT", VCE:"IT", BLQ:"IT",
+            // ES
+            MAD:"ES", BCN:"ES", PMI:"ES", AGP:"ES", LPA:"ES",
+            // NL
+            AMS:"NL", RTM:"NL",
+            // Other near neighbours (no deals yet, but future-safe)
+            BRU:"BE", CPH:"DK", ARN:"SE", OSL:"NO", HEL:"FI"
+        };
+
+        // IATA → display city (bilingual). Unknown codes fall back to the raw IATA.
+        const IATA_TO_CITY = {
+            SFO: { de: "San Francisco",     en: "San Francisco" },
+            LAX: { de: "Los Angeles",       en: "Los Angeles" },
+            LGA: { de: "New York",          en: "New York" },
+            JFK: { de: "New York",          en: "New York" },
+            EWR: { de: "Newark",            en: "Newark" },
+            CGN: { de: "Köln/Bonn",         en: "Cologne/Bonn" },
+            BER: { de: "Berlin",            en: "Berlin" },
+            DUS: { de: "Düsseldorf",        en: "Dusseldorf" },
+            FRA: { de: "Frankfurt",         en: "Frankfurt" },
+            MUC: { de: "München",           en: "Munich" },
+            HAM: { de: "Hamburg",           en: "Hamburg" },
+            VIE: { de: "Wien",              en: "Vienna" },
+            ZRH: { de: "Zürich",            en: "Zurich" },
+            LHR: { de: "London",            en: "London" },
+            CDG: { de: "Paris",             en: "Paris" },
+            FCO: { de: "Rom",               en: "Rome" },
+            MXP: { de: "Mailand",           en: "Milan" },
+            NAP: { de: "Neapel",            en: "Naples" },
+            MAD: { de: "Madrid",            en: "Madrid" },
+            BCN: { de: "Barcelona",         en: "Barcelona" },
+            AMS: { de: "Amsterdam",         en: "Amsterdam" }
+        };
+
+        // Localized country name for the match-block heading.
+        const COUNTRY_NAME = {
+            DE: { de: "Deutschland",        en: "Germany" },
+            AT: { de: "Österreich",         en: "Austria" },
+            CH: { de: "der Schweiz",        en: "Switzerland" },
+            UK: { de: "Großbritannien",     en: "the UK" },
+            FR: { de: "Frankreich",         en: "France" },
+            IT: { de: "Italien",            en: "Italy" },
+            ES: { de: "Spanien",            en: "Spain" },
+            NL: { de: "den Niederlanden",   en: "the Netherlands" },
+            US: { de: "den USA",            en: "the US" }
+        };
+
+        const originCityFor   = (iata) => (IATA_TO_CITY[iata]?.[isDE ? "de" : "en"]) ?? iata ?? "";
+        const countryNameFor  = (cc)   => (COUNTRY_NAME[cc]?.[isDE ? "de" : "en"]) ?? cc ?? "";
+        const originCountryFor = (deal) => {
+            const from = deal?.flights?.[0]?.from;
+            return from ? (IATA_TO_COUNTRY[from] ?? null) : null;
         };
         const t = (key) => (i18n[key]?.[isDE ? "de" : "en"]) ?? key;
 
@@ -496,6 +618,33 @@
             if (deal.originalPrice <= deal.totalPrice) return null;
             return Math.round(((deal.originalPrice - deal.totalPrice) / deal.originalPrice) * 100);
         };
+
+        // Build a Skyscanner affiliate URL — round-trip when a returnDate is given,
+        // one-way otherwise. Mirrors the backend flightURL() pattern (Impact
+        // affiliate ID 2aPk0O) and extends it with a second YYMMDD segment, which
+        // is Skyscanner's round-trip URL convention (.../from/to/OUT/RETURN). Used
+        // as fallback when a deal's stored flights[0].affiliateURL is empty (true
+        // for every manual admin deal today) — without it no card would render
+        // a CTA. Defensive: missing/malformed dates collapse gracefully (returnDate
+        // missing → one-way; outboundDate missing → date segment dropped entirely).
+        function buildFlightAffiliateURL(from, to, outboundDate, returnDate) {
+            if (!from || !to) return null;
+            const fromCode = String(from).toLowerCase();
+            const toCode = String(to).toLowerCase();
+            const yymmdd = (d) => {
+                if (typeof d !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(d)) return "";
+                const parts = d.split("-");
+                return `${parts[0].slice(2)}${parts[1]}${parts[2]}`;
+            };
+            const outStr = yymmdd(outboundDate);
+            const retStr = yymmdd(returnDate);
+            let dateStr = "";
+            if (outStr) {
+                dateStr = `/${outStr}`;
+                if (retStr) dateStr += `/${retStr}`;
+            }
+            return `https://skyscanner.pxf.io/2aPk0O?u=https%3A%2F%2Fwww.skyscanner.de%2Ftransport%2Ffluge%2F${fromCode}%2F${toCode}${dateStr}`;
+        }
 
         // Pure DOM construction — no innerHTML with user data, no XSS surface.
         function renderCard(deal) {
@@ -550,6 +699,16 @@
             }
             body.appendChild(meta);
 
+            // Per-card origin label ("ab Köln/Bonn" / "from San Francisco").
+            // Falls back to the raw IATA code when the airport isn't in the city map.
+            const fromCode = deal?.flights?.[0]?.from;
+            if (fromCode) {
+                const origin = document.createElement("span");
+                origin.className = "deal-origin";
+                origin.textContent = `${t("originPrefix")} ${originCityFor(fromCode)}`;
+                body.appendChild(origin);
+            }
+
             const titleEl = document.createElement("h3");
             titleEl.className = "deal-title";
             titleEl.textContent = localize(deal, "titleEN", "titleDE", "title");
@@ -589,12 +748,26 @@
             }
             footer.appendChild(priceWrap);
 
-            // Affiliate CTA — only when a flight affiliate URL exists. If the deal
-            // has no flights or no affiliateURL, the card renders without a CTA
-            // (graceful, no crash).
-            const affiliateURL = Array.isArray(deal.flights) && deal.flights.length > 0
-                ? deal.flights[0].affiliateURL
-                : null;
+            // Affiliate CTA — use the stored affiliateURL if present, otherwise
+            // build a round-trip Skyscanner URL from flights[0] (outbound) plus the
+            // trip's return leg. Same pxf.io pattern + affiliate ID 2aPk0O as the
+            // backend, so attribution stays consistent. The return leg is found by
+            // type === "return", falling back to the last flights[] entry for
+            // multi-stop trips that don't tag types explicitly. Defensive: no CTA
+            // when flights / from / to are missing (graceful, no crash).
+            const flights = Array.isArray(deal.flights) ? deal.flights : [];
+            const flight0 = flights[0] ?? null;
+            let affiliateURL = (flight0 && flight0.affiliateURL) ? flight0.affiliateURL : null;
+            if (!affiliateURL && flight0) {
+                let returnFlight = flights.find(f => f && f.type === "return");
+                if (!returnFlight && flights.length > 1) returnFlight = flights[flights.length - 1];
+                affiliateURL = buildFlightAffiliateURL(
+                    flight0.from,
+                    flight0.to,
+                    flight0.departureDate,
+                    returnFlight && returnFlight.departureDate
+                );
+            }
             if (affiliateURL) {
                 const cta = document.createElement("a");
                 cta.className = "deal-cta";
@@ -610,9 +783,27 @@
             return card;
         }
 
+        // Render one of the two deal blocks (match / other). When headingText is
+        // null the block's sub-heading stays hidden — used when only one bucket is
+        // populated so the section keeps the simple single-list look of before.
+        function renderDealBlock(bucket, dealsArr, headingText) {
+            if (dealsArr.length === 0) return;
+            const block = document.querySelector(`[data-block="${bucket}"]`);
+            const list  = block.querySelector(`[data-list="${bucket}"]`);
+            const head  = block.querySelector("[data-block-heading]");
+            if (headingText) {
+                head.textContent = headingText;
+            } else {
+                head.hidden = true;
+            }
+            const frag = document.createDocumentFragment();
+            for (const deal of dealsArr) frag.appendChild(renderCard(deal));
+            list.appendChild(frag);
+            block.hidden = false;
+        }
+
         async function loadDeals() {
             const placeholderEl = document.querySelector(".deals-placeholder");
-            const listEl = document.querySelector(".deals-list");
             try {
                 const snap = await getDocs(collection(db, "curatedTrips"));
                 const now = new Date();
@@ -630,10 +821,28 @@
                     placeholderEl.textContent = t("dealsEmpty");
                     return;
                 }
+
+                // Soft origin sorting: deals from the visitor's country go on top
+                // under "Deals ab <Land>", the rest below as "Weitere Reisen". When
+                // there is no visitor country (unknown timezone) or no match at all,
+                // we render a single block with no sub-heading — looks like before.
+                const match = visitorCountry
+                    ? deals.filter(d => originCountryFor(d) === visitorCountry)
+                    : [];
+                const other = visitorCountry
+                    ? deals.filter(d => originCountryFor(d) !== visitorCountry)
+                    : deals;
+
                 placeholderEl.remove();
-                const frag = document.createDocumentFragment();
-                for (const deal of deals) frag.appendChild(renderCard(deal));
-                listEl.appendChild(frag);
+
+                if (match.length > 0 && other.length > 0) {
+                    renderDealBlock("match", match, `${t("dealsAbFrom")} ${countryNameFor(visitorCountry)}`);
+                    renderDealBlock("other", other, t("dealsMoreHead"));
+                } else if (match.length > 0) {
+                    renderDealBlock("match", match, null);
+                } else {
+                    renderDealBlock("other", other, null);
+                }
             } catch (err) {
                 // Quiet failure — user-facing message only, error to console for debugging.
                 placeholderEl.textContent = t("dealsEmpty");
