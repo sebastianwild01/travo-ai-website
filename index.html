@@ -426,48 +426,54 @@
             .deals-list { gap: 22px; }
         }
 
-        /* In-app-browser hint banner — only visible when JS detects a webview
-           that blocks App-Store deep links (TikTok, Instagram, Facebook).
-           Cyan-gradient bar pinned to the top, with an arrow pointing toward the
-           ⋯ menu (top right). Hidden by default; JS toggles the body class. */
-        .inapp-banner {
+        /* In-app-browser hint — only visible when JS detects a webview that
+           blocks App-Store deep links (TikTok, Instagram, Facebook). A compact
+           top-right cluster: a big cyan ↗ arrow pulsing toward the corner where
+           TikTok / IG / FB place their ⋯ menu, with a small tooltip card below
+           it. pointer-events:none on the wrapper so touches still reach the
+           content underneath. Honours iPhone notch via safe-area-inset-top. */
+        .inapp-hint {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: calc(env(safe-area-inset-top, 0px) + 12px);
+            right: 12px;
             z-index: 100;
-            display: none;                              /* shown via body.has-inapp-banner */
-            align-items: flex-start;
-            gap: 12px;
-            background: linear-gradient(90deg, #00d4ff, #0066ff);
-            color: white;
-            padding: max(14px, env(safe-area-inset-top, 0px)) 16px 14px;
-            font-size: 13px;
-            line-height: 1.35;
-            font-weight: 500;
-            text-align: left;
-            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+            display: none;                              /* shown via body.has-inapp-hint */
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            max-width: calc(100% - 24px);
+            pointer-events: none;
         }
-        body.has-inapp-banner .inapp-banner { display: flex; }
-        /* Push the hero down by the banner height so the icon isn't covered. */
-        body.has-inapp-banner .hero { padding-top: 96px; }
-        @media (min-width: 768px) {
-            body.has-inapp-banner .hero { padding-top: 104px; }
-        }
-        .inapp-arrow {
-            font-size: 22px;
+        body.has-inapp-hint .inapp-hint { display: flex; }
+        .inapp-hint-arrow {
+            display: block;
+            font-size: 34px;
             line-height: 1;
-            flex-shrink: 0;
-            transform: translate(0, 0);
-            animation: inapp-arrow-pulse 1.8s ease-in-out infinite;
+            color: var(--accent);
+            margin-right: 6px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45),
+                         0 0 16px rgba(0, 212, 255, 0.55);
+            animation: inapp-arrow-wave 1.6s ease-in-out infinite;
         }
-        .inapp-text {
-            flex: 1;
-            min-width: 0;
+        .inapp-hint-card {
+            display: block;
+            max-width: 240px;
+            padding: 10px 14px;
+            background: rgba(0, 212, 255, 0.14);
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 1.4;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+            text-align: left;
         }
-        @keyframes inapp-arrow-pulse {
-            0%, 100% { transform: translate(0, 0); opacity: 0.95; }
-            50%      { transform: translate(3px, -3px); opacity: 1; }
+        @keyframes inapp-arrow-wave {
+            0%, 100% { transform: translate(0, 0); }
+            50%      { transform: translate(6px, -6px); }
         }
 
         /* --- Reduced motion: kill transforms + transitions for accessibility --- */
@@ -478,7 +484,7 @@
                 transition-duration: 0.001ms !important;
                 scroll-behavior: auto !important;
             }
-            .inapp-arrow { animation: none !important; transform: none !important; }
+            .inapp-hint-arrow { animation: none !important; transform: none !important; }
             .appstore-link, .appstore-link:hover, .appstore-link:active,
             .cta-secondary, .cta-secondary:hover, .cta-secondary:active,
             .deal-card, .deal-card:hover, .deal-card:active,
@@ -489,12 +495,12 @@
     </style>
 </head>
 <body>
-    <!-- In-app-browser hint — JS unhides it (via body.has-inapp-banner) when the
+    <!-- In-app-browser hint — JS unhides it (via body.has-inapp-hint) when the
          page is loaded inside TikTok / Instagram / Facebook webviews, where App-
          Store deep links are blocked. Stays hidden in normal browsers. -->
-    <div class="inapp-banner" role="status" aria-live="polite">
-        <span class="inapp-arrow" aria-hidden="true">↗</span>
-        <span class="inapp-text" data-i18n="inappBanner">Tippe oben rechts auf &ctdot; und waehle &bdquo;Im Browser oeffnen&ldquo;, um die App zu laden.</span>
+    <div class="inapp-hint" role="status" aria-live="polite">
+        <span class="inapp-hint-arrow" aria-hidden="true">↗</span>
+        <span class="inapp-hint-card" data-i18n="inappBanner">Tippe oben rechts auf &ctdot; und dann auf &bdquo;Im Browser oeffnen&ldquo;</span>
     </div>
 
     <section class="hero">
@@ -573,7 +579,7 @@
             ua.includes("fban") ||                // Facebook iOS app
             ua.includes("fbav");                  // Facebook iOS app (version tag)
         if (isInAppBrowser) {
-            document.body.classList.add("has-inapp-banner");
+            document.body.classList.add("has-inapp-hint");
         }
 
         const isDE = (navigator.language || "de").toLowerCase().startsWith("de");
@@ -596,8 +602,8 @@
             originPrefix:  { de: "ab",                                                       en: "from" },
             dealsAbFrom:   { de: "Deals ab",                                                 en: "Deals from" },
             dealsMoreHead: { de: "Weitere Reisen",                                           en: "More trips" },
-            inappBanner:   { de: "Tippe oben rechts auf ⋯ und wähle „Im Browser öffnen“, um die App zu laden.",
-                             en: "Tap ⋯ in the top right and choose “Open in browser” to download the app." }
+            inappBanner:   { de: "Tippe oben rechts auf ⋯ und dann auf „Im Browser öffnen“",
+                             en: "Tap ⋯ in the top right, then “Open in browser”" }
         };
 
         // --- Geo: visitor's country derived from the IANA browser timezone ---
