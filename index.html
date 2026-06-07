@@ -365,6 +365,12 @@
             color: var(--text);
             letter-spacing: -0.01em;
         }
+        .deal-price-unit {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-faint);
+            margin-left: 4px;
+        }
         .deal-price-old {
             font-size: 13px;
             color: var(--text-faint);
@@ -600,6 +606,7 @@
             viewFlights:   { de: "Flüge ansehen",                                            en: "View flights" },
             photoCredit:   { de: "Foto",                                                     en: "Photo" },
             originPrefix:  { de: "ab",                                                       en: "from" },
+            perPersonShort:{ de: "p.P.",                                                     en: "pp" },
             dealsAbFrom:   { de: "Deals ab",                                                 en: "Deals from" },
             dealsMoreHead: { de: "Weitere Reisen",                                           en: "More trips" },
             inappBanner:   { de: "Tippe oben rechts auf ⋯ und dann auf „Im Browser öffnen“",
@@ -736,10 +743,22 @@
             }
         };
 
+        // Mirror of CuratedTrip.pricePerPersonCalculated (Swift): flights + (hotels × rooms)/2,
+        // 2 travelers → 1 room. The stored `totalPrice` is a FULL figure (flights + full hotel cost);
+        // the iOS app never displays it — it recomputes per-person from flights+stops. We do the same
+        // so the website price matches the app instead of showing the (higher) full total.
+        const roomsNeeded = (t) => t > 0 ? Math.floor((t + 1) / 2) : 1;
+        const pricePerPersonCalculated = (deal) => {
+            const flightCost = (deal.flights || []).reduce((s, f) => s + (typeof f.price === "number" ? f.price : 0), 0);
+            const hotelCost  = (deal.stops   || []).reduce((s, st) => s + (st.hotelPrice || 0) * (st.nights || 0), 0);
+            return flightCost + (hotelCost * roomsNeeded(2)) / 2.0;
+        };
+
         const discountPercent = (deal) => {
-            if (typeof deal.originalPrice !== "number" || typeof deal.totalPrice !== "number") return null;
-            if (deal.originalPrice <= deal.totalPrice) return null;
-            return Math.round(((deal.originalPrice - deal.totalPrice) / deal.originalPrice) * 100);
+            const now = pricePerPersonCalculated(deal);
+            if (typeof deal.originalPrice !== "number" || !(now > 0)) return null;
+            if (deal.originalPrice <= now) return null;
+            return Math.round(((deal.originalPrice - now) / deal.originalPrice) * 100);
         };
 
         // Build a Skyscanner affiliate URL — round-trip when a returnDate is given,
@@ -861,8 +880,14 @@
             const priceWrap = document.createElement("div");
             const now = document.createElement("span");
             now.className = "deal-price-now";
-            now.textContent = formatPrice(deal.totalPrice, deal.currency);
+            // Per-person price (matches the app), not the stored full totalPrice.
+            now.textContent = formatPrice(pricePerPersonCalculated(deal), deal.currency);
             priceWrap.appendChild(now);
+            // Explicit per-person unit so the figure can't be mistaken for a full-trip total.
+            const unit = document.createElement("span");
+            unit.className = "deal-price-unit";
+            unit.textContent = t("perPersonShort");
+            priceWrap.appendChild(unit);
             if (discountPercent(deal) !== null) {
                 const old = document.createElement("span");
                 old.className = "deal-price-old";
