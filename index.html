@@ -273,19 +273,6 @@
             background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.55));
             pointer-events: none;
         }
-        .deal-discount {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 5px 11px;
-            border-radius: var(--radius-pill);
-            letter-spacing: 0.02em;
-            box-shadow: 0 4px 14px rgba(0, 102, 255, 0.32);
-        }
         .deal-credit {
             position: absolute;
             bottom: 8px;
@@ -335,11 +322,6 @@
             letter-spacing: -0.005em;
             color: var(--text);
         }
-        .deal-subtitle {
-            font-size: 13px;
-            line-height: 1.45;
-            color: var(--text-muted);
-        }
         .deal-urgency {
             align-self: flex-start;
             font-size: 11px;
@@ -370,12 +352,6 @@
             font-weight: 600;
             color: var(--text-faint);
             margin-left: 4px;
-        }
-        .deal-price-old {
-            font-size: 13px;
-            color: var(--text-faint);
-            text-decoration: line-through;
-            margin-left: 7px;
         }
         .deal-cta {
             background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -760,13 +736,6 @@
             return flightCost + (hotelCost * roomsNeeded(2)) / 2.0;
         };
 
-        const discountPercent = (deal) => {
-            const now = pricePerPersonCalculated(deal);
-            if (typeof deal.originalPrice !== "number" || !(now > 0)) return null;
-            if (deal.originalPrice <= now) return null;
-            return Math.round(((deal.originalPrice - now) / deal.originalPrice) * 100);
-        };
-
         // Build a Skyscanner affiliate URL — round-trip when a returnDate is given,
         // one-way otherwise. Mirrors the backend flightURL() pattern (Impact
         // affiliate ID 2aPk0O) and extends it with a second YYMMDD segment, which
@@ -811,14 +780,6 @@
                 img.loading = "lazy";
                 wrap.appendChild(img);
 
-                const pct = discountPercent(deal);
-                if (pct !== null) {
-                    const badge = document.createElement("span");
-                    badge.className = "deal-discount";
-                    badge.textContent = `−${pct}%`; // typographic minus
-                    wrap.appendChild(badge);
-                }
-
                 // Unsplash hotlinking licence requires photographer credit.
                 if (deal.coverPhotographer) {
                     const credit = document.createElement("span");
@@ -862,13 +823,9 @@
             titleEl.textContent = localize(deal, "titleEN", "titleDE", "title");
             body.appendChild(titleEl);
 
-            const subText = localize(deal, "subtitleEN", "subtitleDE", "subtitle");
-            if (subText) {
-                const subEl = document.createElement("p");
-                subEl.className = "deal-subtitle";
-                subEl.textContent = subText;
-                body.appendChild(subEl);
-            }
+            // Subtitle intentionally omitted: stored subtitleDE/EN bake in a stale/wrong price
+            // ("ab 310€ pro Person" = the old full total), which the frontend can't recompute.
+            // Duration + the corrected per-person price below already convey it — one price only.
 
             const urgencyText = isDE
                 ? (deal.urgencyDE ?? deal.urgencyEN ?? "")
@@ -894,12 +851,6 @@
             unit.className = "deal-price-unit";
             unit.textContent = t("perPersonShort");
             priceWrap.appendChild(unit);
-            if (discountPercent(deal) !== null) {
-                const old = document.createElement("span");
-                old.className = "deal-price-old";
-                old.textContent = formatPrice(deal.originalPrice, deal.currency);
-                priceWrap.appendChild(old);
-            }
             footer.appendChild(priceWrap);
 
             // Affiliate CTA — use the stored affiliateURL if present, otherwise
