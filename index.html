@@ -37,9 +37,22 @@
             --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.22);
             --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.35);
             --shadow-glow: 0 12px 40px rgba(0, 212, 255, 0.18);
+            --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 20px;
             --radius-pill: 999px;
+            /* Vertical-rhythm scale (4/8 base) — every margin/padding/gap derives from this
+               so spacing stays proportional instead of ad-hoc. */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            --space-10: 128px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,62 +73,78 @@
         a { color: inherit; }
 
         /* --- Hero --- */
+        /* Three stacked groups separated by one rhythm step (var(--space-7)):
+           1) text (H1 + subline), 2) brand cluster (icon + wordmark + App-Store badge),
+           3) eSIM. Spacing lives on the flex `gap`, not per-element margins. */
         .hero {
             position: relative;
             min-height: 100vh;
             min-height: 100dvh;
-            padding: 56px 24px max(56px, env(safe-area-inset-bottom));
+            padding: var(--space-8) var(--space-5) max(var(--space-8), env(safe-area-inset-bottom));
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: var(--space-7);
             overflow: hidden;
         }
-        /* Subtle cyan glow behind the hero — premium "halo" without animation. */
+        /* Subtle cyan glow behind the hero — premium "halo" without animation.
+           Centred on the brand cluster (the focal point of the new layout). */
         .hero::before {
             content: "";
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(70% 50% at 50% 25%, rgba(0, 212, 255, 0.12), transparent 70%),
-                radial-gradient(50% 40% at 50% 75%, rgba(0, 102, 255, 0.08), transparent 75%);
+                radial-gradient(68% 48% at 50% 44%, rgba(0, 212, 255, 0.13), transparent 70%),
+                radial-gradient(50% 40% at 50% 82%, rgba(0, 102, 255, 0.07), transparent 75%);
             pointer-events: none;
             z-index: 0;
         }
         .hero > * { position: relative; z-index: 1; }
 
+        /* Group 1 — text block, now at the top of the hero. */
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        .hero-title {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.06;
+            max-width: 17ch;
+            color: var(--text);
+        }
+        .hero-sub {
+            font-size: clamp(16px, 4vw, 19px);
+            line-height: 1.5;
+            color: var(--text-muted);
+            max-width: 34ch;
+        }
+
+        /* Group 2 — brand cluster: icon + wordmark + badge read as ONE unit via tight
+           internal spacing (home-screen "icon + label", then the badge right below). */
+        .hero-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .hero-icon {
             width: 96px;
             height: 96px;
             border-radius: 22%; /* iOS squircle approximation */
             box-shadow: var(--shadow-lg), var(--shadow-glow);
-            margin-bottom: 10px;
+            margin-bottom: var(--space-2);   /* icon → wordmark: tight */
             display: block;
         }
-        /* App-name under the icon — mimics the iOS home-screen "icon + label" pair.
-           Visually subordinate to the H1 so it doesn't compete with the headline. */
         .hero-appname {
-            font-size: 14px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.85);
-            letter-spacing: -0.005em;
-            margin-bottom: 34px;
-        }
-        .hero-title {
-            font-size: clamp(30px, 7.5vw, 44px);
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1.08;
-            max-width: 18ch;
-            margin: 0 auto 14px;
-            color: var(--text);
-        }
-        .hero-sub {
-            font-size: clamp(15px, 4.2vw, 18px);
-            line-height: 1.5;
-            color: var(--text-muted);
-            max-width: 36ch;
-            margin: 0 auto 36px;
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-4);   /* wordmark → badge: still part of the unit */
         }
 
         /* Primary CTA: official Apple "Download on the App Store" badge.
@@ -125,8 +154,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 8px;
-            border-radius: 12px;
+            padding: var(--space-1) var(--space-2);
+            border-radius: var(--radius-sm);
             text-decoration: none;
             min-height: 56px;
             transition: transform 0.18s ease;
@@ -139,17 +168,22 @@
         .appstore-link:hover { transform: translateY(-1px); }
         .appstore-link:active { transform: translateY(0); }
 
+        /* Group 3 — secondary eSIM recommendation. Separated from the brand cluster by
+           the hero's rhythm gap; internal spacing via the group gap. */
+        .hero-esim {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-2);
+        }
         /* Eyebrow above the eSIM button — short label so visitors don't confuse
-           the secondary CTA with the app itself. Margin-top creates the clear
-           visual break between primary App-Store badge and partner travel extra. */
+           the secondary CTA with the app itself. */
         .esim-eyebrow {
             font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            color: rgba(255, 255, 255, 0.42);
-            margin-top: 60px;
-            margin-bottom: 0;
+            color: var(--text-faint);
         }
         /* eSIM CTA — muted gold that signals yesim's brand language without
            outshining the primary App-Store badge. Dark navy text on gold gives
@@ -159,14 +193,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 8px;
             min-height: 44px;
-            padding: 10px 22px;
+            padding: var(--space-3) var(--space-5);
             background: #C9A14A;
             color: #0a1628;
             text-decoration: none;
             border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            border-radius: var(--radius-sm);
             font-size: 14px;
             font-weight: 600;
             transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
@@ -188,7 +221,6 @@
             color: rgba(255, 255, 255, 0.32);
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            margin-top: 8px;
         }
 
         /* --- Deals --- */
@@ -196,39 +228,40 @@
             width: 100%;
             max-width: 1120px;
             margin: 0 auto;
-            padding: 72px 20px 96px;
+            padding: var(--space-9) var(--space-5);
         }
         .deals-eyebrow {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.14em;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: var(--space-2);
         }
         .deals-heading {
-            font-size: clamp(26px, 5.5vw, 34px);
+            font-size: clamp(28px, 6vw, 36px);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+            line-height: 1.12;
+            margin-bottom: var(--space-3);
             color: var(--text);
         }
         .deals-sub {
-            font-size: 15px;
+            font-size: 16px;
+            line-height: 1.5;
             color: var(--text-muted);
             max-width: 48ch;
-            margin: 0 auto 36px;
+            margin: 0 auto var(--space-7);
         }
         .deals-placeholder {
             font-size: 14px;
             color: var(--text-faint);
-            padding: 48px 0;
+            padding: var(--space-7) 0;
         }
         .deals-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-            gap: 18px;
+            gap: var(--space-4);
             text-align: left;
         }
 
@@ -283,10 +316,10 @@
         }
 
         .deal-body {
-            padding: 16px 18px 18px;
+            padding: var(--space-4);
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: var(--space-2);
             flex: 1;
         }
         .deal-meta {
@@ -295,23 +328,21 @@
             align-items: center;
             font-size: 12px;
             color: var(--text-faint);
-            margin-bottom: 2px;
         }
         .deal-origin {
             font-size: 11px;
             color: var(--text-faint);
             letter-spacing: 0.02em;
-            margin-top: -2px;
         }
 
         /* Block sub-headings (visible only when both match + other blocks exist). */
-        .deals-block { margin-top: 8px; }
-        .deals-block + .deals-block { margin-top: 40px; }
+        .deals-block { margin-top: var(--space-2); }
+        .deals-block + .deals-block { margin-top: var(--space-7); }
         .deals-block-heading {
             font-size: clamp(18px, 4vw, 22px);
             font-weight: 700;
             letter-spacing: -0.01em;
-            margin-bottom: 18px;
+            margin-bottom: var(--space-4);
             color: var(--text);
             text-align: left;
         }
@@ -334,15 +365,15 @@
         }
         .deal-footer {
             margin-top: auto;
-            padding-top: 10px;
+            padding-top: var(--space-3);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: var(--space-3);
             flex-wrap: wrap;
         }
         .deal-price-now {
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--text);
             letter-spacing: -0.01em;
@@ -357,12 +388,12 @@
             background: linear-gradient(90deg, var(--accent), var(--accent-2));
             color: white;
             text-decoration: none;
-            padding: 9px 16px;
-            border-radius: 11px;
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-sm);
             font-size: 13px;
             font-weight: 600;
             letter-spacing: 0.01em;
-            min-height: 36px;
+            min-height: 44px;
             display: inline-flex;
             align-items: center;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -401,11 +432,10 @@
 
         /* --- Desktop tuning --- */
         @media (min-width: 768px) {
-            .hero-icon { width: 112px; height: 112px; margin-bottom: 12px; }
-            .hero-appname { font-size: 15px; margin-bottom: 40px; }
+            .hero { gap: var(--space-8); }
+            .hero-icon { width: 112px; height: 112px; }
             .appstore-link img { width: 200px; height: 67px; }
-            .esim-eyebrow { margin-top: 72px; }
-            .deals-list { gap: 22px; }
+            .deals-list { gap: var(--space-5); }
         }
 
         /* In-app-browser hint — only visible when JS detects a webview that
@@ -486,21 +516,30 @@
     </div>
 
     <section class="hero">
-        <img class="hero-icon" src="/assets/app-icon.png" alt="travo.ai" width="96" height="96">
-        <p class="hero-appname">travo.ai</p>
-        <h1 class="hero-title" data-i18n="heroTitle">Komplette Reiseplaene. In Sekunden.</h1>
-        <p class="hero-sub" data-i18n="heroSub">Auf deinen Reisetyp zugeschnitten. Mit handverlesenen Deals und passenden Reisepartnern.</p>
-        <a class="appstore-link" href="https://apps.apple.com/app/id6760975806" aria-label="Im App Store laden" data-appstore-link>
-            <img data-appstore-badge
-                 src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de?size=540x180"
-                 alt="Im App Store laden"
-                 width="180" height="60">
-        </a>
-        <p class="esim-eyebrow" data-i18n="esimEyebrow">Ausserdem empfehle ich:</p>
-        <a class="cta-secondary" href="https://yesim.tpx.lu/yNEnzOQH" target="_blank" rel="noopener sponsored" data-i18n="yesim">
-            eSIM fuers Ausland &ndash; yesim
-        </a>
-        <p class="esim-ad-label" data-i18n="esimAdLabel">Anzeige</p>
+        <!-- Group 1: text block, now at the very top of the hero. -->
+        <div class="hero-text">
+            <h1 class="hero-title" data-i18n="heroTitle">Komplette Reiseplaene. In Sekunden.</h1>
+            <p class="hero-sub" data-i18n="heroSub">Auf deinen Reisetyp zugeschnitten. Mit handverlesenen Deals und passenden Reisepartnern.</p>
+        </div>
+        <!-- Group 2: app icon + wordmark + App-Store badge, tightly coupled as one unit. -->
+        <div class="hero-brand">
+            <img class="hero-icon" src="/assets/app-icon.png" alt="travo.ai" width="96" height="96">
+            <p class="hero-appname">travo.ai</p>
+            <a class="appstore-link" href="https://apps.apple.com/app/id6760975806" aria-label="Im App Store laden" data-appstore-link>
+                <img data-appstore-badge
+                     src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de?size=540x180"
+                     alt="Im App Store laden"
+                     width="180" height="60">
+            </a>
+        </div>
+        <!-- Group 3: secondary eSIM recommendation. -->
+        <div class="hero-esim">
+            <p class="esim-eyebrow" data-i18n="esimEyebrow">Ausserdem empfehle ich:</p>
+            <a class="cta-secondary" href="https://yesim.tpx.lu/yNEnzOQH" target="_blank" rel="noopener sponsored" data-i18n="yesim">
+                eSIM fuers Ausland &ndash; yesim
+            </a>
+            <p class="esim-ad-label" data-i18n="esimAdLabel">Anzeige</p>
+        </div>
     </section>
 
     <section class="deals" aria-labelledby="deals-heading">
