@@ -117,6 +117,9 @@
             max-width: 17ch;
             color: var(--text);
         }
+        /* Fixed line break after the first sentence — two block spans (one per i18n key)
+           so the break holds in both DE and EN through the textContent-based locale swap. */
+        .hero-title span { display: block; }
         .hero-sub {
             font-size: clamp(16px, 4vw, 19px);
             line-height: 1.5;
@@ -518,7 +521,7 @@
     <section class="hero">
         <!-- Group 1: text block, now at the very top of the hero. -->
         <div class="hero-text">
-            <h1 class="hero-title" data-i18n="heroTitle">Komplette Reiseplaene. In Sekunden.</h1>
+            <h1 class="hero-title"><span data-i18n="heroTitleLine1">Komplette Reiseplaene.</span> <span data-i18n="heroTitleLine2">In Sekunden.</span></h1>
             <p class="hero-sub" data-i18n="heroSub">Auf deinen Reisetyp zugeschnitten. Mit handverlesenen Deals und passenden Reisepartnern.</p>
         </div>
         <!-- Group 2: app icon + wordmark + App-Store badge, tightly coupled as one unit. -->
@@ -605,8 +608,8 @@
 
         const isDE = (navigator.language || "de").toLowerCase().startsWith("de");
         const i18n = {
-            heroTitle:     { de: "Komplette Reisepläne. In Sekunden.",
-                             en: "Complete travel itineraries. In seconds." },
+            heroTitleLine1:{ de: "Komplette Reisepläne.",                                  en: "Complete travel itineraries." },
+            heroTitleLine2:{ de: "In Sekunden.",                                          en: "In seconds." },
             heroSub:       { de: "Auf deinen Reisetyp zugeschnitten. Mit handverlesenen Deals und passenden Reisepartnern.",
                              en: "Tailored to your travel style. With handpicked deals and matching travel partners." },
             yesim:         { de: "eSIM fürs Ausland – yesim",                                en: "eSIM abroad – yesim" },
