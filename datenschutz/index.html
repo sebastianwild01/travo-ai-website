@@ -39,7 +39,7 @@
     <div class="container">
         <a class="back" href="/">&larr; Zurueck zu travo.ai</a>
         <h1>Datenschutzerklaerung</h1>
-        <p class="updated">Stand: November 2026</p>
+        <p class="updated">Stand: 6. November 2026</p>
 
         <h2>1. Verantwortlicher</h2>
         <p>
@@ -88,31 +88,34 @@
         <ul>
             <li>Geraetetyp und Betriebssystemversion</li>
             <li>FCM-Token fuer Push-Benachrichtigungen</li>
-            <li>Absturzberichte ueber Firebase Crashlytics (koennen deiner Nutzer-ID zugeordnet sein und technische Fehlerdaten enthalten)</li>
+            <li>Absturz- und Fehlerberichte ueber Firebase Crashlytics, ab App-Version 1.0.22 nur mit deiner Einwilligung (abschaltbar in den Einstellungen). Sie koennen deine Nutzer-ID, Geraete- und App-Daten sowie technische Fehlerdaten enthalten; Firebase bewahrt sie bis zu 90 Tage auf.</li>
         </ul>
 
         <h2>4. Wie wir deine Daten verwenden</h2>
         <ul>
-            <li><strong>KI-Reiseplanung (Google Gemini):</strong> Deine Eingaben zur Reiseplanung — Reisewuensche, Freitext, Sprach-Transkripte aus dem Sprachmodus, Chat-Nachrichten an den KI-Assistenten sowie hochgeladene Fotos und Screenshots (z. B. Moodboards, Buchungs-Screenshots) — werden an die Google Gemini API (Google LLC, USA) uebermittelt, um personalisierte Reiseplaene zu erstellen und anzupassen. Die Spracherkennung selbst (Umwandlung von Sprache in Text) erfolgt auf deinem Geraet durch Apple-Technologie; nur der erkannte Text wird uebermittelt.</li>
+            <li><strong>KI-Reiseplanung (Google Gemini):</strong> Deine Eingaben zur Reiseplanung — Reisewuensche, Freitext, Sprach-Transkripte aus dem Sprachmodus, Chat-Nachrichten an den KI-Assistenten sowie hochgeladene Fotos und Screenshots (z. B. Moodboards, Buchungs-Screenshots) — werden an die Google Gemini API (Google LLC, USA) uebermittelt, um personalisierte Reiseplaene zu erstellen und anzupassen. Die Spracherkennung (Sprache in Text) erfolgt mit Apple-Technologie, je nach Geraet lokal oder ueber Server von Apple; an Gemini geht nur der erkannte Text.</li>
             <li><strong>Flugpreise:</strong> Wir nutzen die Travelpayouts/Aviasales API um aktuelle Flugpreise abzurufen. Dabei werden Abflug- und Zielort sowie Reisedaten uebermittelt.</li>
-            <li><strong>Hotelsuche:</strong> Ueber Skyscanner werden Hotelpreise abgerufen. Stadt und Reisedaten werden uebermittelt.</li>
+            <li><strong>Hotelsuche:</strong> Hotels suchen wir ueber Google Places. Dabei werden Stadt und Suchbegriff uebermittelt.</li>
+            <li><strong>Links zu Anbietern:</strong> Tippst du auf einen Link (z. B. Skyscanner, Booking.com, Aviasales, Rome2Rio, Yesim, Google Maps; teils Affiliate-Links ueber Impact oder Travelpayouts), oeffnet sich die Seite des Anbieters. Der Link enthaelt Ort und Reisedaten, aber nicht deine Nutzer-ID. Ab dann gilt die Datenschutzerklaerung des Anbieters.</li>
+            <li><strong>Standort:</strong> Wenn du es in iOS erlaubst, nutzen wir deinen ungefaehren Standort, um den naechsten Flughafen zu finden. Die Suche laeuft auf dem Geraet; die Koordinaten gehen dafuer an den Ortsdienst von Apple.</li>
+            <li><strong>Meldungen und Feedback:</strong> Meldungen zu Inhalten oder Nutzern und dein Feedback speichern wir, um sie zu bearbeiten. Nach einer Account-Loeschung bleiben sie ohne deine Nutzer-ID erhalten.</li>
             <li><strong>Bilder:</strong> Unsplash wird fuer Reisebilder genutzt. Deine persoenlichen Daten werden nicht an Unsplash uebermittelt.</li>
-            <li><strong>Orte:</strong> Google Places wird fuer Ortsinformationen genutzt.</li>
+            <li><strong>Orte:</strong> Google Places und Apple Maps werden fuer Ortsinformationen genutzt.</li>
             <li><strong>Soziale Funktionen:</strong> Dein Profil, Nachrichten und Freundschaftsanfragen werden in Firebase Firestore gespeichert.</li>
             <li><strong>Push-Benachrichtigungen:</strong> Wir senden dir Benachrichtigungen ueber neue Nachrichten, Trip-Einladungen und Freundschaftsanfragen ueber Firebase Cloud Messaging.</li>
             <li><strong>Abonnements:</strong> RevenueCat verarbeitet deine Abonnement-Daten. Zahlungen in der App werden direkt ueber Apple abgewickelt.</li>
-            <li><strong>Kauf auf unserer Website (EU):</strong> Wenn du das Abo ueber unsere Website abschliesst, wickelt Stripe die Zahlung ab (Zahlungsdaten, E-Mail-Adresse, Rechnungsland); die Kaufseite und die Abo-Verwaltung stellt RevenueCat (Web Billing) bereit. Deine Nutzer-ID wird uebermittelt, damit das Abo deinem Account zugeordnet wird. Apple erhaelt die von Apple vorgeschriebenen Meldungen zu diesen Kaeufen, ohne deine Zahlungsdaten.</li>
+            <li><strong>Kauf auf unserer Website (EU):</strong> Wenn du das Abo ueber unsere Website abschliesst, wickelt Stripe die Zahlung ab (Zahlungsdaten, E-Mail-Adresse, Rechnungsland); die Kaufseite und die Abo-Verwaltung stellt RevenueCat (Web Billing) bereit. Deine Nutzer-ID wird uebermittelt, damit das Abo deinem Account zugeordnet wird. Kaeufe ueber den Link aus der App melden wir Apple wie von Apple vorgeschrieben, ohne deine Zahlungsdaten; dafuer speichert die App ein Token von Apple. Kaeufe direkt auf der Kaufseite werden nicht gemeldet.</li>
         </ul>
 
         <h3>4.1 Kaufseite premium.travo-ai.app</h3>
         <ul>
             <li><strong>Hosting:</strong> Die Kaufseite liegt bei Firebase Hosting (Google). Beim Aufruf verarbeitet Google technisch notwendige Verbindungsdaten (IP-Adresse, Zeitpunkt, aufgerufene Adresse, Browser) in Server-Logs, um die Seite auszuliefern und zu schuetzen. Die Seite laedt dafuer auch Programmbibliotheken von Google (www.gstatic.com, apis.google.com) und liest ihre Einstellungen aus Firebase Firestore. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (sicherer, stabiler Betrieb der Seite).</li>
             <li><strong>Anmeldung:</strong> Erst wenn du einen Kauf-Button antippst, meldest du dich mit „Mit Apple anmelden“ ueber Firebase Authentication an. Wir erhalten dieselben Daten wie in der App (Abschnitt 3.1). Anonyme Anmeldungen gibt es auf der Kaufseite nicht. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertrag ueber das Abo).</li>
-            <li><strong>Abo-Pruefung und Checkout:</strong> Mit deiner Nutzer-ID fragt die Seite bei RevenueCat, ob du Premium schon hast, und leitet dich zum Checkout von RevenueCat und Stripe weiter. Beim Start des Checkouts speichern wir deine Nutzer-ID mit Zeitpunkt und Sprache in Firestore, um den Kauf dem Web zuzuordnen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.</li>
-            <li><strong>Kuendigung:</strong> Was du in das Kuendigungsformular eintraegst (Name, E-Mail-Adresse, Vertragsangaben), speichern wir in Firestore, um die Kuendigung zu bearbeiten und zu bestaetigen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und c DSGVO (§ 312k BGB).</li>
+            <li><strong>Abo-Pruefung und Checkout:</strong> Mit deiner Nutzer-ID fragt die Seite bei RevenueCat, ob du Premium schon hast, und leitet dich zum Checkout von RevenueCat und Stripe weiter. Beim Start des Checkouts speichern wir deine Nutzer-ID mit Zeitpunkt, Sprache und deiner Zustimmung zu den AGB und zum sofortigen Beginn (Zeitpunkt, Textversion) in Firestore, um den Kauf dem Web zuzuordnen und die Zustimmung nachweisen zu koennen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.</li>
+            <li><strong>Kuendigung und Widerruf:</strong> Was du in die Formulare „Vertraege hier kuendigen“ und „Vertrag widerrufen“ eintraegst (Name, E-Mail-Adresse, Vertragsangaben, bei angemeldeten Nutzern die Nutzer-ID), speichern wir in Firestore, um die Erklaerung zu bearbeiten und per E-Mail zu bestaetigen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und c DSGVO (§§ 312k, 356a BGB).</li>
             <li><strong>Speicher im Browser:</strong> Keine Cookies, aber die Seite legt technisch notwendige Eintraege im Browser ab: die Anmeldung bei Firebase, einen Merker, dass der Seitenaufruf in diesem Tab schon gezaehlt wurde, den gerade begonnenen Kauf und, wenn du Premium hast, deine Nutzer-ID mit Zeitpunkt, damit die Seite den Status sofort anzeigt. Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG, Art. 6 Abs. 1 lit. b DSGVO.</li>
             <li><strong>Nutzungszaehler:</strong> Die Seite zaehlt einzelne Ereignisse (z. B. Seitenaufruf, Tipp auf einen Kauf-Button, Aufruf ueber einen Kurzlink) als reine Monatssummen. Gesendet wird nur der Name des Ereignisses, bei Kurzlinks zusaetzlich das Land und bei Anmeldefehlern der Fehlercode, keine Nutzer-ID, keine Cookies. Deine IP-Adresse wird nur kurz im Arbeitsspeicher genutzt, um Missbrauch zu begrenzen, und nicht gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Verbesserung der Kaufseite).</li>
-            <li><strong>Drittlanduebermittlung:</strong> Google, RevenueCat und Stripe sind US-Unternehmen bzw. Teil von US-Konzernen. Eine Uebermittlung in die USA ist dabei moeglich. Sie stuetzt sich auf das EU-US Data Privacy Framework (Angemessenheitsbeschluss, Art. 45 DSGVO), soweit der Anbieter zertifiziert ist, und sonst auf die Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).</li>
+            <li><strong>Drittlanduebermittlung:</strong> siehe Abschnitt 5.</li>
         </ul>
 
         <h3>4.2 Website travo-ai.app und E-Mail-Kontakt</h3>
@@ -124,29 +127,34 @@
         <h3>4.3 Rechtsgrundlagen in der App</h3>
         <ul>
             <li><strong>Vertrag (Art. 6 Abs. 1 lit. b DSGVO):</strong> Account, Profil, KI-Reiseplanung, Flug-, Hotel- und Ortsdaten, soziale Funktionen und Abonnements.</li>
-            <li><strong>Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO):</strong> Absturzberichte und Missbrauchsschutz, um die App stabil und sicher zu betreiben.</li>
-            <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Push-Benachrichtigungen und der Zugriff auf Kamera, Standort, Mikrofon, Spracherkennung oder Fotos, den du in iOS erlaubst.</li>
+            <li><strong>Berechtigtes Interesse (Art. 6 Abs. 1 lit. f DSGVO):</strong> Missbrauchsschutz und Bearbeitung von Meldungen, um die App sicher zu betreiben.</li>
+            <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Absturzberichte (auch § 25 Abs. 1 TDDDG), Push-Benachrichtigungen und der Zugriff auf Kamera, Standort, Mikrofon, Spracherkennung oder Fotos, den du in iOS erlaubst.</li>
         </ul>
         <p>Die Accountdaten brauchen wir, damit du die App nutzen und ein Abo abschliessen kannst; ohne sie geht das nicht. Wir treffen keine automatisierten Entscheidungen im Sinne von Art. 22 DSGVO.</p>
 
-        <h2>5. Drittanbieter</h2>
-        <p>Wir nutzen folgende Drittanbieter-Dienste:</p>
-        <ul>
-            <li><strong>Firebase</strong> (Google) — Authentifizierung, Datenbank, Speicher, Crashlytics, Cloud Messaging. <a href="https://firebase.google.com/support/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>Google Gemini API</strong> (Google LLC) — KI-Reiseplanung, Sprachmodus, KI-Chat. <a href="https://policies.google.com/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>RevenueCat</strong> — Abonnementverwaltung. <a href="https://www.revenuecat.com/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>Stripe</strong> — Zahlungsabwicklung beim Kauf ueber unsere Website. <a href="https://stripe.com/de/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>GitHub Pages</strong> (GitHub, Inc.) — Hosting der Website travo-ai.app. <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">Datenschutz</a></li>
-            <li><strong>Travelpayouts</strong> — Flugpreisdaten. <a href="https://www.travelpayouts.com/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>Skyscanner</strong> — Hotel- und Fluglinks. <a href="https://www.skyscanner.de/privacy-policy" target="_blank">Datenschutz</a></li>
-            <li><strong>Google Places</strong> — Ortsdaten. <a href="https://policies.google.com/privacy" target="_blank">Datenschutz</a></li>
-            <li><strong>Unsplash</strong> — Reisebilder. <a href="https://unsplash.com/privacy" target="_blank">Datenschutz</a></li>
-        </ul>
+        <h2>5. Empfaenger und Uebermittlung in Drittlaender</h2>
+        <p>Diese Empfaenger verarbeiten Daten fuer uns oder, wo angegeben, in eigener Verantwortung. Google, Stripe und GitHub sind nach dem EU-US Data Privacy Framework zertifiziert. Kopien der Standardvertragsklauseln bekommst du auf Anfrage von uns oder direkt beim Anbieter.</p>
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:0.9em"><thead><tr><th style="text-align:left;padding:6px 8px">Empfaenger</th><th style="text-align:left;padding:6px 8px">Land</th><th style="text-align:left;padding:6px 8px">Grundlage</th><th style="text-align:left;padding:6px 8px">Mehr</th></tr></thead>
+<tbody>
+<tr><td style="padding:6px 8px;vertical-align:top">Google (Firebase inkl. Authentication, Firestore, Storage, Crashlytics, App Check, Cloud Messaging; Gemini API; Places; Gmail)</td><td style="padding:6px 8px;vertical-align:top">USA, Daten in Firestore in der EU</td><td style="padding:6px 8px;vertical-align:top">Art. 45 DSGVO (EU-US Data Privacy Framework), hilfsweise Art. 46 Abs. 2 lit. c (Standardvertragsklauseln)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://firebase.google.com/support/privacy" target="_blank">Firebase</a>, <a href="https://policies.google.com/privacy" target="_blank">Google</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">RevenueCat, Inc. (Abo-Verwaltung, Kaufseite)</td><td style="padding:6px 8px;vertical-align:top">USA</td><td style="padding:6px 8px;vertical-align:top">Art. 46 Abs. 2 lit. c DSGVO (Standardvertragsklauseln, <a href="https://www.revenuecat.com/dpa" target="_blank">im Vertrag enthalten</a>)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.revenuecat.com/privacy" target="_blank">Datenschutz</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Stripe (Zahlung; fuer Betrugspraevention und Compliance eigenverantwortlich)</td><td style="padding:6px 8px;vertical-align:top">USA/EU</td><td style="padding:6px 8px;vertical-align:top">Art. 45 DSGVO (Data Privacy Framework), hilfsweise Standardvertragsklauseln</td><td style="padding:6px 8px;vertical-align:top"><a href="https://stripe.com/de/privacy" target="_blank">Datenschutz</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">GitHub, Inc. (Hosting von travo-ai.app)</td><td style="padding:6px 8px;vertical-align:top">USA</td><td style="padding:6px 8px;vertical-align:top">Art. 45 DSGVO (Data Privacy Framework)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank">Datenschutz</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Apple (Mit Apple anmelden, App Store, Spracherkennung, Karten-Suche: eigenverantwortlich)</td><td style="padding:6px 8px;vertical-align:top">USA/EU</td><td style="padding:6px 8px;vertical-align:top">Apple ist fuer seine Dienste selbst verantwortlich</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.apple.com/de/legal/privacy/" target="_blank">Datenschutz</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Travelpayouts/Aviasales (Flugpreise), Unsplash (Reisebilder), Duffel (Flugsuche fuer Deals)</td><td style="padding:6px 8px;vertical-align:top">siehe Anbieter</td><td style="padding:6px 8px;vertical-align:top">Es gehen nur Route, Datum oder Suchbegriffe an den Anbieter, keine Nutzer-ID. Technisch kann der Anbieter deine IP-Adresse sehen, wenn die App ihn direkt abruft.</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.travelpayouts.com/privacy" target="_blank">Travelpayouts</a>, <a href="https://unsplash.com/privacy" target="_blank">Unsplash</a>, <a href="https://duffel.com/privacy-policy" target="_blank">Duffel</a></td></tr>
+</tbody></table></div>
 
         <h2>6. Datenspeicherung</h2>
-        <p>Deine Daten werden auf Servern von Google Firebase in der EU (Region europe-west3, Frankfurt) gespeichert. Wir bewahren deine Daten so lange auf, wie dein Account besteht. Bei Loeschung deines Accounts werden die zugehoerigen Daten innerhalb von 30 Tagen geloescht.</p>
-        <p>Ausgenommen ist, was wir laenger aufbewahren muessen: Kaufdaten und Abrechnungsunterlagen zu Web-Kaeufen (gesetzliche Aufbewahrungsfrist bis zu 10 Jahre) und Kuendigungen (solange wir sie als Nachweis brauchen, regelmaessig bis zum Ablauf der dreijaehrigen Verjaehrungsfrist). Rechtsgrundlage: Art. 6 Abs. 1 lit. c und f DSGVO.</p>
-        <p>Einzelne Dienstleister (insbesondere Google Gemini und RevenueCat) verarbeiten Daten in den USA. Die Uebermittlung erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. Standardvertragsklauseln. Wir verwenden kein App-uebergreifendes Tracking und keine Werbe-IDs (IDFA).</p>
+        <p>Deine Daten werden auf Servern von Google Firebase in der EU (Multi-Region eur3) gespeichert. Wir bewahren deine Daten so lange auf, wie dein Account besteht. Bei Loeschung deines Accounts werden die zugehoerigen Daten innerhalb von 30 Tagen geloescht.</p>
+        <p>Ausgenommen ist, was wir laenger aufbewahren muessen. Die Fristen laufen jeweils ab dem Ende des Kalenderjahres:</p>
+        <ul>
+            <li><strong>Kaufdaten und Buchungsbelege zu Web-Kaeufen:</strong> 8 Jahre (§ 147 AO, § 14b UStG), danach automatische Loeschung.</li>
+            <li><strong>Kuendigungen und Widerrufe:</strong> 6 Jahre (§ 147 AO), danach automatische Loeschung.</li>
+            <li><strong>Start eines Checkouts ohne Kauf:</strong> Loeschung nach 30 Tagen.</li>
+            <li><strong>Apple-Tokens fuer die Meldungen an Apple:</strong> solange die Meldepflicht gegenueber Apple besteht.</li>
+        </ul>
+        <p>Rechtsgrundlage: Art. 6 Abs. 1 lit. c DSGVO. Das Abo bei RevenueCat und Stripe endet nicht mit der Account-Loeschung; kuendige es bitte vorher.</p>
+        <p>Wir verwenden kein App-uebergreifendes Tracking und keine Werbe-IDs (IDFA).</p>
 
         <h2>7. Deine Rechte (DSGVO)</h2>
         <p>Du hast das Recht auf:</p>

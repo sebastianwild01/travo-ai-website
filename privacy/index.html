@@ -40,7 +40,7 @@
     <div class="container">
         <a class="back" href="/">&larr; Back to travo.ai</a>
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: November 2026</p>
+        <p class="updated">Last updated: November 6, 2026</p>
 
         <h2>1. Controller</h2>
         <p>
@@ -89,31 +89,34 @@
         <ul>
             <li>Device type and operating system version</li>
             <li>FCM token for push notifications</li>
-            <li>Crash reports via Firebase Crashlytics (may be linked to your user ID and contain technical error data)</li>
+            <li>Crash and error reports via Firebase Crashlytics, from app version 1.0.22 only with your consent (can be switched off in Settings). They can contain your user ID, device and app data and technical error data; Firebase keeps them for up to 90 days.</li>
         </ul>
 
         <h2>4. How we use your data</h2>
         <ul>
-            <li><strong>AI trip planning (Google Gemini):</strong> Your trip planning inputs — travel preferences, free text, voice transcripts from voice mode, chat messages to the AI assistant, and uploaded photos and screenshots (e.g., moodboards, booking screenshots) — are transmitted to the Google Gemini API (Google LLC, USA) to generate and adjust personalized trip plans. Speech recognition itself (converting voice to text) happens on your device using Apple technology; only the recognized text is transmitted.</li>
+            <li><strong>AI trip planning (Google Gemini):</strong> Your trip planning inputs — travel preferences, free text, voice transcripts from voice mode, chat messages to the AI assistant, and uploaded photos and screenshots (e.g., moodboards, booking screenshots) — are transmitted to the Google Gemini API (Google LLC, USA) to generate and adjust personalized trip plans. Speech recognition (speech to text) uses Apple technology, on the device or on Apple servers depending on the device; only the recognized text goes to Gemini.</li>
             <li><strong>Flight prices:</strong> We use the Travelpayouts/Aviasales API to retrieve current flight prices. Departure and destination as well as travel dates are transmitted.</li>
-            <li><strong>Hotel search:</strong> Hotel prices are retrieved via Skyscanner. City and travel dates are transmitted.</li>
+            <li><strong>Hotel search:</strong> We search hotels via Google Places. City and search term are transmitted.</li>
+            <li><strong>Links to providers:</strong> If you tap a link (e.g. Skyscanner, Booking.com, Aviasales, Rome2Rio, Yesim, Google Maps; some are affiliate links via Impact or Travelpayouts), the provider's site opens. The link contains place and travel dates but not your user ID. From then on the provider's privacy policy applies.</li>
+            <li><strong>Location:</strong> If you allow it in iOS, we use your approximate location to find the nearest airport. The search runs on the device; the coordinates go to Apple's location service for this.</li>
+            <li><strong>Reports and feedback:</strong> We store reports about content or users and your feedback in order to handle them. After account deletion they remain without your user ID.</li>
             <li><strong>Images:</strong> Unsplash is used for travel images. Your personal data is not transmitted to Unsplash.</li>
-            <li><strong>Places:</strong> Google Places is used for place information.</li>
+            <li><strong>Places:</strong> Google Places and Apple Maps are used for place information.</li>
             <li><strong>Social features:</strong> Your profile, messages, and friend requests are stored in Firebase Firestore.</li>
             <li><strong>Push notifications:</strong> We send notifications about new messages, trip invitations, and friend requests via Firebase Cloud Messaging.</li>
             <li><strong>Subscriptions:</strong> RevenueCat processes your subscription data. Payments in the app are handled directly through Apple.</li>
-            <li><strong>Purchase on our website (EU):</strong> If you subscribe through our website, Stripe handles the payment (payment details, email address, billing country); RevenueCat (Web Billing) provides the checkout page and subscription management. Your user ID is transmitted so the subscription can be assigned to your account. Apple receives the reports it requires about these purchases, without your payment details.</li>
+            <li><strong>Purchase on our website (EU):</strong> If you subscribe through our website, Stripe handles the payment (payment details, email address, billing country); RevenueCat (Web Billing) provides the checkout page and subscription management. Your user ID is transmitted so the subscription can be assigned to your account. We report purchases via the link in the app to Apple as Apple requires, without your payment details; for this the app stores a token from Apple. Purchases directly on the purchase page are not reported.</li>
         </ul>
 
         <h3>4.1 Purchase page premium.travo-ai.app</h3>
         <ul>
             <li><strong>Hosting:</strong> The purchase page is hosted on Firebase Hosting (Google). When you open it, Google processes technically necessary connection data (IP address, time, requested address, browser) in server logs to deliver and protect the page. The page also loads program libraries from Google (www.gstatic.com, apis.google.com) and reads its settings from Firebase Firestore. Legal basis: Art. 6(1)(f) GDPR (secure, stable operation of the page).</li>
             <li><strong>Sign-in:</strong> You sign in with "Sign in with Apple" via Firebase Authentication only when you tap a purchase button. We receive the same data as in the app (section 3.1). There are no anonymous sign-ins on the purchase page. Legal basis: Art. 6(1)(b) GDPR (subscription contract).</li>
-            <li><strong>Subscription check and checkout:</strong> Using your user ID, the page asks RevenueCat whether you already have Premium and forwards you to the RevenueCat and Stripe checkout. When the checkout starts, we store your user ID with the time and language in Firestore to attribute the purchase to the web. Legal basis: Art. 6(1)(b) GDPR.</li>
-            <li><strong>Cancellation:</strong> What you enter in the cancellation form (name, email address, contract details) is stored in Firestore so we can process and confirm the cancellation. Legal basis: Art. 6(1)(b) and (c) GDPR (Section 312k German Civil Code).</li>
+            <li><strong>Subscription check and checkout:</strong> Using your user ID, the page asks RevenueCat whether you already have Premium and forwards you to the RevenueCat and Stripe checkout. When the checkout starts, we store your user ID with the time, language and your consent to the terms and immediate start (time, text version) in Firestore to attribute the purchase to the web and to be able to prove the consent. Legal basis: Art. 6(1)(b) GDPR.</li>
+            <li><strong>Cancellation and withdrawal:</strong> What you enter in the “Cancel contracts here” and “Withdraw from contract” forms (name, email address, contract details, for signed-in users the user ID) is stored in Firestore so we can process the declaration and confirm it by email. Legal basis: Art. 6(1)(b) and (c) GDPR (Sections 312k, 356a German Civil Code).</li>
             <li><strong>Browser storage:</strong> No cookies, but the page stores technically necessary entries in your browser: the Firebase sign-in, a marker that the page view in this tab was already counted, the purchase you just started and, if you have Premium, your user ID with a timestamp so the page can show the status right away. Legal basis: Section 25(2) no. 2 TDDDG, Art. 6(1)(b) GDPR.</li>
             <li><strong>Usage counter:</strong> The page counts individual events (e.g. page view, tap on a purchase button, visit through a short link) as plain monthly totals. Only the name of the event is sent, plus the country for short links and the error code for sign-in errors, with no user ID and no cookies. Your IP address is used only briefly in memory to limit abuse and is not stored. Legal basis: Art. 6(1)(f) GDPR (improving the purchase page).</li>
-            <li><strong>Transfers to third countries:</strong> Google, RevenueCat and Stripe are US companies or part of US groups, so data may be transferred to the USA. This is based on the EU-US Data Privacy Framework (adequacy decision, Art. 45 GDPR) where the provider is certified, and otherwise on the European Commission's Standard Contractual Clauses (Art. 46(2)(c) GDPR).</li>
+            <li><strong>Transfers to third countries:</strong> see section 5.</li>
         </ul>
 
         <h3>4.2 Website travo-ai.app and email contact</h3>
@@ -125,28 +128,33 @@
         <h3>4.3 Legal bases in the app</h3>
         <ul>
             <li><strong>Contract (Art. 6(1)(b) GDPR):</strong> Account, profile, AI trip planning, flight, hotel and place data, social features and subscriptions.</li>
-            <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> Crash reports and abuse protection, to keep the app stable and secure.</li>
-            <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> Push notifications and the access to camera, location, microphone, speech recognition or photos that you allow in iOS.</li>
+            <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> abuse protection and handling reports, to keep the app secure.</li>
+            <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> Crash reports (also Section 25(1) TDDDG), push notifications and the access to camera, location, microphone, speech recognition or photos that you allow in iOS.</li>
         </ul>
         <p>We need your account data so you can use the app and subscribe; without it this is not possible. We do not make automated decisions within the meaning of Art. 22 GDPR.</p>
 
-        <h2>5. Third-party services</h2>
-        <p>We use the following third-party services:</p>
-        <ul>
-            <li><strong>Firebase</strong> (Google) &mdash; authentication, database, storage, Crashlytics, cloud messaging. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Google Gemini API</strong> (Google LLC) &mdash; AI trip planning, voice mode, AI chat. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>RevenueCat</strong> &mdash; subscription management. <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Stripe</strong> &mdash; payment processing for purchases on our website. <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>GitHub Pages</strong> (GitHub, Inc.) &mdash; hosting of the website travo-ai.app. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Travelpayouts</strong> &mdash; flight pricing data. <a href="https://www.travelpayouts.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Skyscanner</strong> &mdash; hotel and flight links. <a href="https://www.skyscanner.net/privacy-policy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Google Places</strong> &mdash; location data. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-            <li><strong>Unsplash</strong> &mdash; travel images. <a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
-        </ul>
+        <h2>5. Recipients and transfers to third countries</h2>
+        <p>These recipients process data for us or, where stated, under their own responsibility. Google, Stripe and GitHub are certified under the EU-US Data Privacy Framework. You can get copies of the Standard Contractual Clauses from us on request or directly from the provider.</p>
+        <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:0.9em"><thead><tr><th style="text-align:left;padding:6px 8px">Recipient</th><th style="text-align:left;padding:6px 8px">Country</th><th style="text-align:left;padding:6px 8px">Basis</th><th style="text-align:left;padding:6px 8px">More</th></tr></thead>
+<tbody>
+<tr><td style="padding:6px 8px;vertical-align:top">Google (Firebase incl. Authentication, Firestore, Storage, Crashlytics, App Check, Cloud Messaging; Gemini API; Places; Gmail)</td><td style="padding:6px 8px;vertical-align:top">USA, Firestore data in the EU</td><td style="padding:6px 8px;vertical-align:top">Art. 45 GDPR (EU-US Data Privacy Framework), alternatively Art. 46(2)(c) (Standard Contractual Clauses)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase</a>, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">RevenueCat, Inc. (subscription management, checkout)</td><td style="padding:6px 8px;vertical-align:top">USA</td><td style="padding:6px 8px;vertical-align:top">Art. 46(2)(c) GDPR (Standard Contractual Clauses, <a href="https://www.revenuecat.com/dpa" target="_blank" rel="noopener">part of the contract</a>)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">Privacy</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Stripe (payment; independently responsible for fraud prevention and compliance)</td><td style="padding:6px 8px;vertical-align:top">USA/EU</td><td style="padding:6px 8px;vertical-align:top">Art. 45 GDPR (Data Privacy Framework), alternatively Standard Contractual Clauses</td><td style="padding:6px 8px;vertical-align:top"><a href="https://stripe.com/privacy" target="_blank" rel="noopener">Privacy</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">GitHub, Inc. (hosting of travo-ai.app)</td><td style="padding:6px 8px;vertical-align:top">USA</td><td style="padding:6px 8px;vertical-align:top">Art. 45 GDPR (Data Privacy Framework)</td><td style="padding:6px 8px;vertical-align:top"><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Privacy</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Apple (Sign in with Apple, App Store, speech recognition, map search: independently responsible)</td><td style="padding:6px 8px;vertical-align:top">USA/EU</td><td style="padding:6px 8px;vertical-align:top">Apple is itself responsible for its services</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Privacy</a></td></tr>
+<tr><td style="padding:6px 8px;vertical-align:top">Travelpayouts/Aviasales (flight prices), Unsplash (travel images), Duffel (flight search for deals)</td><td style="padding:6px 8px;vertical-align:top">see provider</td><td style="padding:6px 8px;vertical-align:top">Only route, date or search terms go to the provider, no user ID. The provider can technically see your IP address if the app calls it directly.</td><td style="padding:6px 8px;vertical-align:top"><a href="https://www.travelpayouts.com/privacy" target="_blank" rel="noopener">Travelpayouts</a>, <a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Unsplash</a>, <a href="https://duffel.com/privacy-policy" target="_blank" rel="noopener">Duffel</a></td></tr>
+</tbody></table></div>
 
         <h2>6. Data storage</h2>
-        <p>Your data is stored on Google Firebase servers in the EU (region europe-west3, Frankfurt). We retain your data for as long as your account exists. Upon account deletion, the associated data is deleted within 30 days.</p>
-        <p>Excepted is what we must keep longer: purchase data and billing records for web purchases (statutory retention of up to 10 years) and cancellations (as long as we need them as proof, normally until the three-year limitation period ends). Legal basis: Art. 6(1)(c) and (f) GDPR.</p>
+        <p>Your data is stored on Google Firebase servers in the EU (multi-region eur3). We retain your data for as long as your account exists. Upon account deletion, the associated data is deleted within 30 days.</p>
+        <p>Excepted is what we must keep longer. Periods run from the end of the calendar year:</p>
+        <ul>
+            <li><strong>Purchase data and booking records for web purchases:</strong> 8 years (Section 147 German Fiscal Code, Section 14b VAT Act), then automatic deletion.</li>
+            <li><strong>Cancellations and withdrawals:</strong> 6 years (Section 147 German Fiscal Code), then automatic deletion.</li>
+            <li><strong>Start of a checkout without a purchase:</strong> deleted after 30 days.</li>
+            <li><strong>Apple tokens for the reports to Apple:</strong> as long as the reporting duty to Apple exists.</li>
+        </ul>
+        <p>Legal basis: Art. 6(1)(c) GDPR. The subscription with RevenueCat and Stripe does not end with account deletion; please cancel it first.</p>
 
         <h2>7. Your rights under GDPR</h2>
         <p>You have the right to:</p>
@@ -180,7 +188,7 @@
 
         <h2>11. International data transfers</h2>
         <p>We are based in Germany. If you access the App from outside the EU, your data is transferred to and processed in the EU (Frankfurt). For users in the United States, this means your data is processed in a jurisdiction with different data protection rules than the U.S.</p>
-        <p>Some service providers (in particular Google Gemini and RevenueCat) process data in the USA. Transfers are based on the EU-US Data Privacy Framework or Standard Contractual Clauses. We do not use cross-app tracking or advertising identifiers (IDFA).</p>
+        <p>See section 5 for transfers to the USA. We do not use cross-app tracking or advertising identifiers (IDFA).</p>
 
         <h2>12. Changes</h2>
         <p>We may update this Privacy Policy from time to time. The current version is always available on this page. Material changes will be communicated via in-app notification or email.</p>
