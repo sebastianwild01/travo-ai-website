@@ -40,7 +40,7 @@
     <div class="container">
         <a class="back" href="/">&larr; Back to travo.ai</a>
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: August 2026</p>
+        <p class="updated">Last updated: November 2026</p>
 
         <h2>1. Controller</h2>
         <p>
@@ -101,15 +101,44 @@
             <li><strong>Places:</strong> Google Places is used for place information.</li>
             <li><strong>Social features:</strong> Your profile, messages, and friend requests are stored in Firebase Firestore.</li>
             <li><strong>Push notifications:</strong> We send notifications about new messages, trip invitations, and friend requests via Firebase Cloud Messaging.</li>
-            <li><strong>Subscriptions:</strong> RevenueCat processes your subscription data. Payments are handled directly through Apple.</li>
+            <li><strong>Subscriptions:</strong> RevenueCat processes your subscription data. Payments in the app are handled directly through Apple.</li>
+            <li><strong>Purchase on our website (EU):</strong> If you subscribe through our website, Stripe handles the payment (payment details, email address, billing country); RevenueCat (Web Billing) provides the checkout page and subscription management. Your user ID is transmitted so the subscription can be assigned to your account. Apple receives the reports it requires about these purchases, without your payment details.</li>
         </ul>
+
+        <h3>4.1 Purchase page premium.travo-ai.app</h3>
+        <ul>
+            <li><strong>Hosting:</strong> The purchase page is hosted on Firebase Hosting (Google). When you open it, Google processes technically necessary connection data (IP address, time, requested address, browser) in server logs to deliver and protect the page. The page also loads program libraries from Google (www.gstatic.com, apis.google.com) and reads its settings from Firebase Firestore. Legal basis: Art. 6(1)(f) GDPR (secure, stable operation of the page).</li>
+            <li><strong>Sign-in:</strong> You sign in with "Sign in with Apple" via Firebase Authentication only when you tap a purchase button. We receive the same data as in the app (section 3.1). There are no anonymous sign-ins on the purchase page. Legal basis: Art. 6(1)(b) GDPR (subscription contract).</li>
+            <li><strong>Subscription check and checkout:</strong> Using your user ID, the page asks RevenueCat whether you already have Premium and forwards you to the RevenueCat and Stripe checkout. When the checkout starts, we store your user ID with the time and language in Firestore to attribute the purchase to the web. Legal basis: Art. 6(1)(b) GDPR.</li>
+            <li><strong>Cancellation:</strong> What you enter in the cancellation form (name, email address, contract details) is stored in Firestore so we can process and confirm the cancellation. Legal basis: Art. 6(1)(b) and (c) GDPR (Section 312k German Civil Code).</li>
+            <li><strong>Browser storage:</strong> No cookies, but the page stores technically necessary entries in your browser: the Firebase sign-in, a marker that the page view in this tab was already counted, the purchase you just started and, if you have Premium, your user ID with a timestamp so the page can show the status right away. Legal basis: Section 25(2) no. 2 TDDDG, Art. 6(1)(b) GDPR.</li>
+            <li><strong>Usage counter:</strong> The page counts individual events (e.g. page view, tap on a purchase button, visit through a short link) as plain monthly totals. Only the name of the event is sent, plus the country for short links and the error code for sign-in errors, with no user ID and no cookies. Your IP address is used only briefly in memory to limit abuse and is not stored. Legal basis: Art. 6(1)(f) GDPR (improving the purchase page).</li>
+            <li><strong>Transfers to third countries:</strong> Google, RevenueCat and Stripe are US companies or part of US groups, so data may be transferred to the USA. This is based on the EU-US Data Privacy Framework (adequacy decision, Art. 45 GDPR) where the provider is certified, and otherwise on the European Commission's Standard Contractual Clauses (Art. 46(2)(c) GDPR).</li>
+        </ul>
+
+        <h3>4.2 Website travo-ai.app and contact form</h3>
+        <ul>
+            <li><strong>Hosting:</strong> The website travo-ai.app is hosted on GitHub Pages (GitHub, Inc., USA). When you visit it, GitHub stores your IP address for security purposes; the transfer to the USA is based on the EU-US Data Privacy Framework. Legal basis: Art. 6(1)(f) GDPR (secure operation of the site).</li>
+            <li><strong>Contact form:</strong> What you enter in the form at /support (name, email address, message) goes to the external service FormSubmit (formsubmit.co), which forwards it by email to our mailbox at Google (Gmail). If you prefer not to use it, email us directly. Legal basis: Art. 6(1)(b) and (f) GDPR (handling your request).</li>
+        </ul>
+
+        <h3>4.3 Legal bases in the app</h3>
+        <ul>
+            <li><strong>Contract (Art. 6(1)(b) GDPR):</strong> Account, profile, AI trip planning, flight, hotel and place data, social features and subscriptions.</li>
+            <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> Crash reports and abuse protection, to keep the app stable and secure.</li>
+            <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> Push notifications and the access to camera, location, microphone, speech recognition or photos that you allow in iOS.</li>
+        </ul>
+        <p>We need your account data so you can use the app and subscribe; without it this is not possible. We do not make automated decisions within the meaning of Art. 22 GDPR.</p>
 
         <h2>5. Third-party services</h2>
         <p>We use the following third-party services:</p>
         <ul>
-            <li><strong>Firebase</strong> (Google) &mdash; authentication, database, storage, analytics, cloud messaging. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy</a></li>
+            <li><strong>Firebase</strong> (Google) &mdash; authentication, database, storage, Crashlytics, cloud messaging. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy</a></li>
             <li><strong>Google Gemini API</strong> (Google LLC) &mdash; AI trip planning, voice mode, AI chat. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
             <li><strong>RevenueCat</strong> &mdash; subscription management. <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
+            <li><strong>Stripe</strong> &mdash; payment processing for purchases on our website. <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
+            <li><strong>GitHub Pages</strong> (GitHub, Inc.) &mdash; hosting of the website travo-ai.app. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Privacy</a></li>
+            <li><strong>FormSubmit</strong> &mdash; forwarding of the contact form by email. <a href="https://formsubmit.co/" target="_blank" rel="noopener">Website</a></li>
             <li><strong>Travelpayouts</strong> &mdash; flight pricing data. <a href="https://www.travelpayouts.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
             <li><strong>Skyscanner</strong> &mdash; hotel and flight links. <a href="https://www.skyscanner.net/privacy-policy" target="_blank" rel="noopener">Privacy</a></li>
             <li><strong>Google Places</strong> &mdash; location data. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a></li>
@@ -117,7 +146,8 @@
         </ul>
 
         <h2>6. Data storage</h2>
-        <p>Your data is stored on Google Firebase servers in the EU (region europe-west3, Frankfurt). We retain your data for as long as your account exists. Upon account deletion, all associated data is deleted within 30 days.</p>
+        <p>Your data is stored on Google Firebase servers in the EU (region europe-west3, Frankfurt). We retain your data for as long as your account exists. Upon account deletion, the associated data is deleted within 30 days.</p>
+        <p>Excepted is what we must keep longer: purchase data and billing records for web purchases (statutory retention of up to 10 years) and cancellations (as long as we need them as proof, normally until the three-year limitation period ends). Legal basis: Art. 6(1)(c) and (f) GDPR.</p>
 
         <h2>7. Your rights under GDPR</h2>
         <p>You have the right to:</p>
@@ -129,6 +159,7 @@
             <li><strong>Data portability</strong></li>
             <li><strong>Object</strong> to processing</li>
         </ul>
+        <p>You can withdraw consent at any time with effect for the future, for example in your iOS settings. You also have the right to lodge a complaint with a data protection supervisory authority. Our competent authority is the Landesbeauftragte f&uuml;r Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestr. 2-4, 40213 D&uuml;sseldorf, Germany.</p>
         <p>Contact us at <a href="mailto:sebastian.travo@gmail.com">sebastian.travo@gmail.com</a> or via our <a href="/support">contact form</a>.</p>
 
         <h2>8. Your rights under California law (CCPA/CPRA)</h2>
